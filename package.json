@@ -1,0 +1,19 @@
+{
+  "name": "cabrini",
+  "version": "1.0.0",
+  "description": "A Hackathon project to connect immigrants for them to allocate resources easily.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/really-lazy-bone/cabrini.git"
+  },
+  "author": "Eric Liao, Michael Hsu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/really-lazy-bone/cabrini/issues"
+  },
+  "homepage": "https://github.com/really-lazy-bone/cabrini"
+}
