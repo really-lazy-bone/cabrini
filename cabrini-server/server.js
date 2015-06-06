@@ -1,84 +1,65 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var User = require('./models/User');
-var ToDoList = require('./models/ToDoList');
-var ToDoListItem = require('./models/ToDoListItem');
-mongoose.connect('mongodb://localhost/test');
- 
- User.remove({}, function(err) { 
-   console.log('collection removed') ;
-   
-   
-   
-});
-  // create a new user
-var newUser = User({
-  name: 'Peter Quill',
-  username: 'starlord5ss5',
-  password: 'password',
-  email: 'test@gmail.com',
-  admin: true
-});
-var newUserTwo = User({
-  name: 'Mike chang',
-  username: 'starlord553244',
-  password: 'password',
-  email: 'test2@gmail.com',
-  admin: true
-});
 
-// save the user
-newUser.save(function(err) {
-  if (err) throw err;
-
-  console.log('User created!');
-});
-newUserTwo.save(function(err) {
-  if (err) throw err;
-
-  console.log('User created2!');
-});
-
-/*
-var toDoList = new ToDoList({ _id: 0, title: 'Test to-do List', age: 100 });
-toDoList.save(function (err) {
-  if (err) throw err;
-  
- var toDoListItem = new ToDoListItem({_todo_list_id: toDoList._id, text: 'Get your birth certificate'});
-  
-  toDoListItem.save(function (err) {
-    if (err) throw err;
-  });
-  
-  toDoList.items.push(toDoListItem);
-toDoList.save();
-});
-*/
+//var Firebase = require('firebase');
 
 var port = process.env.PORT || 1337;
 
 app.use(bodyParser.json());
 
+app.post('/trigger', function (req, res) {
+	res.send(200);
+
+	/**
+	var ref = new Firebase('augmented-sixth.firebaseIO.com');
+
+
+	var sensorType = '';
+
+	switch (req.body.stream) {
+		case 'ultrasonic-sensor-1':
+			sensorType = 'left';
+			break;
+		case 'ultrasonic-sensor-2':
+			sensorType = 'right';
+			break;
+		case 'ultrasonic-sensor-3':
+			sensorType = 'front';
+			break;
+		case 'potentiometer':
+			sensorType = 'back';
+			break;
+	}
+
+	var random = Math.random() * 100;
+	var randomValue = '';
+
+	if (random < 33) {
+		randomValue = 'close';
+	} else if (random < 66) {
+		randomValue = 'middle';
+	} else if (random < 100) {
+		randomValue = 'far';
+	}
+
+	ref.child(sensorType)
+		.set(randomValue);
+*/		
+		
+	/**
+	 * result:
+	 * 	stream = stream name
+	 * 	trigger_name
+	 * 	trigger_description
+	 * 	condition
+	 * 	value
+	 * 	timestamp
+	 */
+});
+
 app.get('/', function (req, res) {
- 
-/*	
-	// get all the users
-User.find({}, function(err, users) {
-  if (err) throw err;
-
-  // object of all the users
-  res.send(users);
-});
-*/
-ToDoList.find({}).populate('items').exec(function (err, toDoList) {
-  if (err) throw err;
-  res.send(toDoList);
-});
-
-
-
+  res.send("hello world");
 });
 
 var server = app.listen(port, function () {
