@@ -1,0 +1,66 @@
+<ion-pane>
+	<ion-header-bar class="bar-positive">
+        <h1 class="title">Cabrini</h1>
+		<button class="button buttons-right header-items button-clear"
+			ng-click="landing.changeLanguage()">
+			{{ landing.languageCode }}
+			<i class="icon ion-android-arrow-dropdown"></i>
+		</button>
+	</ion-header-bar>
+	<ion-content ng-show="landing.changingLanguage">
+		<ul class="list">
+			<li class="item item-divider"
+				ng-click="landing.setLanguage('English')">
+				English
+			</li>
+			<li class="item item-divider"
+				ng-click="landing.setLanguage('Chinese')">
+				中文 (Chinese)
+			</li>
+			<li class="item item-divider"
+				ng-click="landing.setLanguage('Spanish')">
+				Spanish
+			</li>
+		</ul>
+	</ion-content>
+	<ion-content ng-show="!landing.changingLanguage">
+		<div class="list">
+			<div class="item item-divider">
+				{{'landing-title' | translate}}
+			</div>
+			<div class="item">
+			<div id="cabrini-map">
+				<!-- Map canvas -->
+			</div>
+			<div>
+				{{'landing-help' | translate}}
+			</div>
+			</div>
+			<div class="item">
+				<label class="item item-input item-stack-label">
+					<span class="input-label">
+						{{'landing-country' | translate}}
+					</span>
+					<input type="text"
+						placeholder="{{'landing-country' | translate}}"
+						ng-model="landing.country">
+				</label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						{{'landing-intent' | translate}}
+					</div>
+					<select>
+						<option>{{'landing-intent-student' | translate}}</option>
+						<option>{{'landing-intent-work' | translate}}</option>
+						<option>{{'landing-intent-greencard' | translate}}</option>
+						<option>{{'landing-intent-citenship' | translate}}</option>
+					</select>
+				</label>
+				<button class="button button-positive button-block"
+				ng-click="landing.connect()">
+					{{'landing-connect' | translate}}
+				</button>
+			</div>
+		</div>
+	</ion-content>
+</ion-pane>

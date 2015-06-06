@@ -1,24 +1,30 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('LandingCtrl', function($scope, Language) {
+  var self = this;
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-  
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
+  self.changingLanguage = false;
+  self.language = Language.get();
+  self.languageCode = Language.getCode();
+
+  self.connect = connect;
+  self.changeLanguage = changeLanguage;
+  self.setLanguage = setLanguage;
+
+  function connect () {
+    console.log(self.language);
   }
-})
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+  function changeLanguage () {
+    self.changingLanguage = true;
+  }
+
+  function setLanguage (language) {
+    Language.set(language);
+    self.language = Language.get();
+    self.languageCode = Language.getCode();
+    self.changingLanguage = false;
+  }
 })
 
 .controller('AccountCtrl', function($scope) {
