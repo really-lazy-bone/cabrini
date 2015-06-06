@@ -1,24 +1,13 @@
 {
-  "name": "augemented-sixth-proxy-server",
+  "name": "cabrini-server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/really-lazy-bone/augemented-sixth-proxy-server.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/really-lazy-bone/augemented-sixth-proxy-server/issues"
-  },
-  "homepage": "https://github.com/really-lazy-bone/augemented-sixth-proxy-server",
   "dependencies": {
     "body-parser": "^1.12.2",
-    "express": "^4.12.3",
-    "firebase": "^2.2.3"
+    "express": "^4.12.3"
   }
 }
