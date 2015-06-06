@@ -13,7 +13,7 @@ mongoose.connect('mongodb://localhost/test');
    
    
 });
-  // create a new user
+
 var newUser = User({
   name: 'Peter Quill',
   username: 'starlord5ss5',
@@ -29,7 +29,7 @@ var newUserTwo = User({
   admin: true
 });
 
-// save the user
+
 newUser.save(function(err) {
   if (err) throw err;
 

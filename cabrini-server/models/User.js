@@ -1,14 +1,15 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// create a schema
+
 var userSchema = new Schema({
   name: String,
   username: { type: String, required: true},
   password: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  admin: Boolean,
-  location: String,
+  languages: [String],
+  countries: [String],
+  immigration_interests : [{ type: Schema.Types.ObjectId, ref: 'ImmigrationInterest' }],
   meta: {
     age: Number,
     website: String
@@ -17,7 +18,6 @@ var userSchema = new Schema({
   updated_at: Date
 });
 
-// the schema is useless so far
-// we need to create a model using it
+
 var User = mongoose.model('User', userSchema);
 module.exports = User;
