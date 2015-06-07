@@ -44,10 +44,10 @@ angular.module('starter.services', [])
   };
 
   function signup (user) {
-    return $http.post(Setting.serverUrl + '/users', user);
+    return $http.post(Setting.serverUrl + '/users/signup', user);
   }
 
   function login (user) {
-    return $http.post(Setting.serverUrl + '/rest/user/login', user);
+    return $http.post(Setting.serverUrl + '/users/signin', user);
   }
 });

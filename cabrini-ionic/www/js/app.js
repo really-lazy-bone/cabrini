@@ -53,7 +53,8 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     'language-label': 'I also speak',
     'english': 'English',
     'chinese': 'Chinese',
-    'spanish': 'Spanish'
+    'spanish': 'Spanish',
+    'organization-sign-up-label': 'Organization Sign Up Here'
   });
 
   $translateProvider.translations('ch', {
@@ -77,7 +78,8 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     'language-label': '我也說這些語言',
     'english': '英文',
     'chinese': '中文',
-    'spanish': '西班牙語'
+    'spanish': '西班牙語',
+    'organization-sign-up-label': 'Organization Sign Up Here'
   });
 
   $translateProvider.translations('es', {
@@ -101,7 +103,8 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     'language-label': 'I also speak',
     'english': 'English',
     'chinese': 'Chinese',
-    'spanish': 'Spanish'
+    'spanish': 'Spanish',
+    'organization-sign-up-label': 'Organization Sign Up Here'
   });
 
   $translateProvider.preferredLanguage('en');
@@ -119,6 +122,12 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     url: '/',
     templateUrl: 'templates/landing.html',
     controller: 'LandingCtrl as landing'
+  })
+
+  .state('organization-signup', {
+    url: '/organization-signup',
+    templateUrl: 'templates/organization-signup.html',
+    controller: 'OrganizationSignupCtrl as signup'
   })
 
   // setup an abstract state for the tabs directive
