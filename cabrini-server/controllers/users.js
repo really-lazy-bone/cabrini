@@ -3,8 +3,10 @@ var router = express.Router();
 
 
 // define the about route
-router.get('/', function(req, res) {
-  res.send('Test');
+router.post('/', function(req, res) {
+  var userData = JSON.stringify(req.body);
+  console.log(userData);   
+
 });
 
 module.exports = router;
