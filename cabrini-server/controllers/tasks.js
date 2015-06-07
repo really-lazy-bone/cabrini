@@ -7,7 +7,7 @@ router.get('/organizaton/list/:id', function (req, res) {
   var orgID = Number(req.param("id"));
   Task.find({ org_id: orgID }, function (err, tasks) {
     if (err) throw err;
-    res.send(tasks);
+    res.send(JSON.stringify(tasks));
   });
 
 });
@@ -17,7 +17,7 @@ router.get('/user/list:id', function (req, res) {
  var userID = Number(req.param("id"));
   Task.find({ user_id: userID }, function (err, tasks) {
     if (err) throw err;
-    res.send(tasks);
+    res.send(JSON.stringify(tasks));
   });
 
 
