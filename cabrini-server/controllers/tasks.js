@@ -32,7 +32,7 @@ router.post('/:taskID/step/:stepID/todo/:todoID/:completed', function (req, res)
   var taskID = req.param("taskID");
   var stepID = req.param("stepID");
   var todoID = req.param("todoID");
-  var completed = Boolean(req.param("completed"));
+  var completed = req.param("completed");
 
   Task.findOne({ _id: taskID }, function (err, task) {
     if (err) throw err;
