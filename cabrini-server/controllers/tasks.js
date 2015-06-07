@@ -4,7 +4,7 @@ var Task = require('../models/Task');
 
 //Only get unassigned todo List of Org
 router.get('/organizaton/list/:id', function (req, res) {
-  var orgID = Number(req.param("id"));
+  var orgID = req.param("id");
   Task.find({
     $and: [
       { org_id: orgID },
@@ -19,7 +19,7 @@ router.get('/organizaton/list/:id', function (req, res) {
 
 router.get('/user/list:id', function (req, res) {
 
-  var userID = Number(req.param("id"));
+  var userID = req.param("id");
   Task.find({ user_id: userID }, function (err, tasks) {
     if (err) throw err;
     res.send(JSON.stringify(tasks));
@@ -27,10 +27,6 @@ router.get('/user/list:id', function (req, res) {
 
 
 });
-
-
-
-
 
 router.post('/create', function (req, res) {
   var TaskData = req.body;
@@ -44,8 +40,8 @@ router.post('/create', function (req, res) {
 });
 
 router.post('/assign:taskID/:userID', function (req, res) {
-  var userID = Number(req.param("userID"));
-  var taskID = Number(req.param("taskID"));
+  var userID =  req.param("userID");
+  var taskID = req.param("taskID");
   Task.findOne({
     _id: taskID
   }, function (err, taskTemplate) {
@@ -64,6 +60,7 @@ router.post('/assign:taskID/:userID', function (req, res) {
 
     });
 });
+
 
 var objectIdDel = function (copiedObjectWithId) {
   if (copiedObjectWithId != null && typeof (copiedObjectWithId) != 'string' &&
