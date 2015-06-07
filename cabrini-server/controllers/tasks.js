@@ -46,11 +46,11 @@ router.post('/assign/:taskID/:userID', function (req, res) {
     _id: taskID
   }, function (err, taskTemplate) {
       if (taskTemplate) {
-        objectIdDel(JSON.parse(JSON.stringify(taskTemplate)));
-        taskTemplate.user_id = userID;
-        taskTemplate.save(function (err) {
+        var copyTemplate = Task(objectIdDel(JSON.parse(JSON.stringify(taskTemplate))));
+        copyTemplate.user_id = userID;
+        copyTemplate.save(function (err) {
           if (err) throw err;
-          res.send(JSON.stringify(taskTemplate));
+          res.send(JSON.stringify(copyTemplate));
         });
 
       }
@@ -66,7 +66,7 @@ var objectIdDel = function (copiedObjectWithId) {
   if (copiedObjectWithId != null && typeof (copiedObjectWithId) != 'string' &&
     typeof (copiedObjectWithId) != 'number' && typeof (copiedObjectWithId) != 'boolean') {
     //for array length is defined however for objects length is undefined
-    if (typeof (copiedObjectWithId.length) == 'undefined') {
+    if (!copiedObjectWithId.length) {
       delete copiedObjectWithId._id;
       for (var key in copiedObjectWithId) {
         objectIdDel(copiedObjectWithId[key]); //recursive del calls on object elements
@@ -78,5 +78,6 @@ var objectIdDel = function (copiedObjectWithId) {
       }
     }
   }
+  return copiedObjectWithId;
 }
 module.exports = router;
