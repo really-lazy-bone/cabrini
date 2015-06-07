@@ -60,7 +60,8 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'ng-mfb', 'starter
     'organization-language-label': 'Supported Languages',
     'address': 'Address',
     'phone': 'Phone Number',
-    'name': 'Name'
+    'name': 'Name',
+    'immigrant-signup': 'Immigrant Sign Up Here'
   });
 
   $translateProvider.translations('ch', {
@@ -91,7 +92,8 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'ng-mfb', 'starter
     'organization-language-label': '支持語言',
     'address': '地址',
     'phone': '電話號碼',
-    'name': '名字'
+    'name': '名字',
+    'immigrant-signup': '移民幫助申請'
   });
 
   $translateProvider.preferredLanguage('en');
