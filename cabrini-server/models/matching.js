@@ -3,7 +3,7 @@ var Organization = require('../models/Organization');
 var matching = {
 	getOrgMatch: function (userID) {
 		var matchedOrgnization;
-		User.findOne({
+		return User.findOne({
 			_id: userID
 		}, function (err, existingUser) {
 				if (existingUser) {

@@ -41,19 +41,25 @@ router.post('/signin', function (req, res) {
 });
 router.get('/match/:userID', function (req, res) {
   var userID = req.param("userID");
-  var matchingOrg = matching.getOrgMatch(userID);
-  if (matchingOrg) {
-    delete matchingOrg.rank;
-    matchingOrg.save(function (err) {
-      if (err) throw err;
-      res.send(JSON.stringify(matchingOrg));
-    });
+  matching.getOrgMatch(userID).then(function (matchingOrg) {
 
-  }
-  else {
-    res.sendStatus(404);
+    if (matchingOrg) {
+      delete matchingOrg.rank;
+      matchingOrg.save(function (err) {
+        if (err) throw err;
+        res.send(JSON.stringify(matchingOrg));
+      });
 
-  }
+    }
+    else {
+      res.sendStatus(404);
+
+    }
+
+  });
+
+
+
 
 
 });
