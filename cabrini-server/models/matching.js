@@ -1,31 +1,58 @@
 var User = require('../models/User');
 var Organization = require('../models/Organization');
 var matching = {
-	getOrgMatch: function (userEmail) {
+	getOrgMatch: function (userID) {
 		var matchedOrgnization;
 		User.findOne({
-			email: userEmail
+			_id: userID
 		}, function (err, existingUser) {
 				if (existingUser) {
-					//Found users. Loop through all orgs, and find best match,
-					Organization.find({}, function (err, allOrgs) {
-						for (var i = 0; i < allOrgs.length; i++) {
-							allOrgs[i].rank = matching.computeDistances(existingUser, allOrgs[i]);
-						}
-						allOrgs.sort(function (a, b) {
-							return a.rank - b.rank;
+					//User already has match
+					if (existingUser.org_id) {
+						Organization.findOne({
+							_id: existingUser.org_id
+						}, function (err, existingOrganization) {
+								if (existingOrganization) {
+									matchedOrgnization = existingOrganization;
+								}
+
+
+							});
+
+
+					}
+					else {
+						//Found user, but no match yet. Loop through all orgs, and find best match,
+						Organization.find({}, function (err, allOrgs) {
+							for (var i = 0; i < allOrgs.length; i++) {
+								allOrgs[i].rank = matching.computeDistances(existingUser, allOrgs[i]);
+							}
+							allOrgs.sort(function (a, b) {
+								return a.rank - b.rank;
+							});
+							matchedOrgnization = allOrgs[allOrgs.length - 1];
+							matchedOrgnization.users.push(existingUser);
+							existingUser.ord_id = matchedOrgnization._id;
+							existingUser.save(function (err) {
+								if (err) throw err;
+							});
+
+
+
 						});
-						matchedOrgnization = allOrgs[allOrgs.length-1];
-					});
+
+					}
+
+
 				}
-				
+
 			});
-			return matchedOrgnization;
+		return matchedOrgnization;
 	},
 	computeDistances: function (user, organization) {
 		
 		//Countries
-		var countrySimilarity = user.country == organization.country? 1:0;
+		var countrySimilarity = user.country == organization.country ? 1 : 0;
 		//Languages
 		var userLanguages = user.languages;
 		var matchingLanguages = [];

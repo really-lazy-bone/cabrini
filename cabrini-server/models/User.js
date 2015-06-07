@@ -8,6 +8,7 @@ var userSchema = new Schema({
   languages: [String],
   country: String,
   immigration_interests : [String],
+  org_id: String,
   created_at: Date,
   updated_at: Date
 });

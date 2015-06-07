@@ -39,9 +39,9 @@ router.post('/signin', function (req, res) {
     });
 
 });
-router.get('/match/:userEmail', function (req, res) {
-  var userEmail = req.param("userEmail");
-  var matchingOrg = matching.getOrgMatch(userEmail);
+router.get('/match/:userID', function (req, res) {
+  var userID = req.param("userID");
+  var matchingOrg = matching.getOrgMatch(userID);
   if (matchingOrg) {
     delete matchingOrg.rank;
     matchingOrg.save(function (err) {

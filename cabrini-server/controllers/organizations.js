@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var Organization = require('../models/Organization');
 
+
+
+
 router.post('/signup', function (req, res) {
   var organizationData = req.body;
   var newOrganization = Organization(organizationData);
