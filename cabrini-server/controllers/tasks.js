@@ -46,11 +46,11 @@ router.post('/assign/:taskID/:userID', function (req, res) {
     _id: taskID
   }, function (err, taskTemplate) {
       if (taskTemplate) {
-        var duplicatedTask = objectIdDel(JSON.parse(JSON.stringify(taskTemplate)));
-        duplicatedTask.user_id = userID;
-        duplicatedTask.save(function (err) {
+        objectIdDel(JSON.parse(JSON.stringify(taskTemplate)));
+        taskTemplate.user_id = userID;
+        taskTemplate.save(function (err) {
           if (err) throw err;
-          res.send(JSON.stringify(duplicatedTask));
+          res.send(JSON.stringify(taskTemplate));
         });
 
       }
