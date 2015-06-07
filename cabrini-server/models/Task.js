@@ -22,6 +22,8 @@ var StepSchema = new Schema({
 var TaskSchema = new Schema({
   category: String,
   steps: [StepSchema],
+  org_id: Number,
+  user_id: Number,
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }
 });

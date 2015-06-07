@@ -12,4 +12,15 @@ router.post('/create', function (req, res) {
  
  console.log(TaskData);
 });
+
+router.post('/assign', function (req, res) {
+  var TaskData = req.body;
+  var newTask = Task(TaskData);
+   newTask.save(function (err) {
+    if (err) throw err;
+    res.send(JSON.stringify(newTask));
+  });
+ 
+ console.log(TaskData);
+});
 module.exports = router;
