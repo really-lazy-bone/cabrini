@@ -48,7 +48,7 @@ router.get('/organization/users/:id', function (req, res) {
   Organization.findOne({
    _id: orgID}).populate("users").exec(function (err, org) {
   if (err) throw err;
-            res.send(JSON.stringify(org));
+            res.send(JSON.stringify(org.users));
 });;
 
 });
