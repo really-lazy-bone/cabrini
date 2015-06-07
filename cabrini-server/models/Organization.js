@@ -11,10 +11,9 @@ var organizationSchema = new Schema({
   immigration_interests : [{ type: Schema.Types.ObjectId, ref: 'ImmigrationInterest' }],
   x: Number,
   y: Number,
-  meta: {
-    age: Number,
-    website: String
-  },
+  address: String,
+  website: String,
+  phone_number: Number,
   created_at: Date,
   updated_at: Date
 });

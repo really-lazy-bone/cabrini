@@ -19,33 +19,6 @@ mongoose.connect('mongodb://localhost/test');
    
 });
 
-var newUser = User({
-  name: 'Peter Quill',
-  username: 'starlord5ss5',
-  password: 'password',
-  email: 'test@gmail.com',
-  admin: true
-});
-var newUserTwo = User({
-  name: 'Mike chang',
-  username: 'starlord553244',
-  password: 'password',
-  email: 'test2@gmail.com',
-  admin: true
-});
-
-
-newUser.save(function(err) {
-  if (err) throw err;
-
-  console.log('User created!');
-});
-newUserTwo.save(function(err) {
-  if (err) throw err;
-
-  console.log('User created2!');
-});
-
 /*
 var toDoList = new ToDoList({ _id: 0, title: 'Test to-do List', age: 100 });
 toDoList.save(function (err) {
