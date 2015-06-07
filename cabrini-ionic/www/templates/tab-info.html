@@ -17,7 +17,9 @@
           ng-repeat="todo in step.to_do_items">
           <li class="item item-checkbox">
             <label class="checkbox">
-              <input type="checkbox">
+              <input type="checkbox"
+              	ng-model="todo.completed"
+	            ng-change="info.updateTodo(task, step, todo)">
             </label>
             {{todo.name}}
           </li>

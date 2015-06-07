@@ -103,9 +103,9 @@ angular.module('starter.services', [])
     return $http.get(Setting.serverUrl + '/tasks/user/list/' + $rootScope.user._id);
   }
 
-  function updateTodo (taskId, todoId, done) {
+  function updateTodo (taskId, stepId, todoId, done) {
     return $http.post(
-      Setting.serverUrl + '/tasks/' + taskId + '/todo/' + todoId
+      Setting.serverUrl + '/tasks/' + taskId + '/step/' + stepId + '/todo/' + todoId + '/' + done
     );
   }
 });

@@ -87,6 +87,12 @@ angular.module('starter.controllers', [])
     .then(function(response) {
       self.tasks = response.data;
     });
+
+  self.updateTodo = updateTodo;
+
+  function updateTodo (task, step, todo) {
+    TaskService.updateTodo(task._id, step._id, todo._id, todo.completed);
+  }
 })
 
 .controller('ChatCtrl', function(UserService) {
