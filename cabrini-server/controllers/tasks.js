@@ -2,6 +2,31 @@ var express = require('express');
 var router = express.Router();
 var Task = require('../models/Task');
 
+router.get('/organizaiton/list/:id', function (req, res) {
+
+  var orgID = Number(req.param("id"));
+  Task.find({ org_id: orgID }, function (err, tasks) {
+    if (err) throw err;
+    res.send(tasks);
+  });
+
+});
+
+router.get('/user/list:id', function (req, res) {
+
+ var userID = Number(req.param("id"));
+  Task.find({ user_id: userID }, function (err, tasks) {
+    if (err) throw err;
+    res.send(tasks);
+  });
+
+
+});
+
+
+
+
+
 router.post('/create', function (req, res) {
   var TaskData = req.body;
   var newTask = Task(TaskData);
