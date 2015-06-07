@@ -8,7 +8,7 @@ router.get('/organization/list/:id', function (req, res) {
   Task.find({
     $and: [
       { org_id: orgID },
-      { user_id: {$exists: false} }
+      { user_id: { $exists: false } }
     ]
   }, function (err, tasks) {
       if (err) throw err;
@@ -28,6 +28,27 @@ router.get('/user/list/:id', function (req, res) {
 
 });
 
+router.post('/:taskID/step/:stepID/todo/:todoID/:completed', function (req, res) {
+  var taskID = req.param("taskID");
+  var stepID = req.param("stepID");
+  var todoID = req.param("todoID");
+  var completed = Boolean(req.param("completed"));
+
+  Task.findOne({ _id: taskID }, function (err, task) {
+    if (err) throw err;
+    var step = task.step.id(stepID);
+    var todoItem = step.to_do_items.id(todoID);
+    todoItem.completed = completed;
+    task.save(function (err) {
+      if (err) throw err;
+      res.sendStatus(200);
+    });
+
+  });
+
+});
+
+
 router.post('/create', function (req, res) {
   var TaskData = req.body;
   var newTask = Task(TaskData);
@@ -40,7 +61,7 @@ router.post('/create', function (req, res) {
 });
 
 router.post('/assign/:taskID/:userID', function (req, res) {
-  var userID =  req.param("userID");
+  var userID = req.param("userID");
   var taskID = req.param("taskID");
   Task.findOne({
     _id: taskID
