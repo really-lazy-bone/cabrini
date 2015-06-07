@@ -7689,6 +7689,9 @@ a.button {
   .bar-chat > label.item.item-input {
     flex: 1 1 auto; }
 
+.my-message {
+  text-align: right; }
+
 .button-fab {
   position: fixed;
   right: 1em;

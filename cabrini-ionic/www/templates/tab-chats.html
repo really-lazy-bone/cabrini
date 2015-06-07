@@ -1,12 +1,26 @@
 <ion-view view-title="{{'chat-label' | translate}}">
 	<ion-content>
+		<div class="list">
+			<div class="item item-divider">
+				Talking to {{chat.organization.name}}
+			</div>
+			<div class="item"
+				ng-class="{
+					'my-message': message.user === user._id
+				}"
+				ng-repeat="message in messages">
+				{{message.message}}
+			</div>
+		</div>
 	</ion-content>
 </ion-view>
 <ion-footer-bar align-title="left" class="bar-positive bar-chat">
 	<label class="item item-input">
-		<input type="text" placeholder="Say something">
+		<input type="text" placeholder="Say something"
+			ng-model="chat.newMessage">
 	</label>
-	<button class="button button-calm">
+	<button class="button button-calm"
+		ng-click="chat.addMessage()">
 		<i class="icon ion-paper-airplane"></i>
 	</button>
 </ion-footer-bar>
