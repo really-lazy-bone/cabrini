@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,6 +21,82 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 })
 
+.config(['$translateProvider', function ($translateProvider) {
+  $translateProvider.translations('en', {
+    'landing-title': 'Hello from Cabrini',
+    'landing-help': 'Local agents around you.',
+    'country': 'Country of Origin',
+    'intent': 'Intent',
+    'intent-student': 'Student',
+    'intent-work': 'Work',
+    'intent-greencard': 'Green Card',
+    'intent-citizenship': 'Citizenship',
+    'signup': 'Sign Up',
+    'email': 'Email',
+    'password': 'Password',
+    'login': 'Log In',
+    'logout': 'Log Out',
+    'update-user-profile': 'Update Profile',
+    'profile-label': 'Profile',
+    'chat-label': 'Chat',
+    'info-label': 'Info',
+    'language-label': 'I also speak',
+    'english': 'English',
+    'chinese': 'Chinese',
+    'spanish': 'Spanish'
+  });
+
+  $translateProvider.translations('ch', {
+    'landing-title': '來自Cabrini的歡迎',
+    'landing-help': '你周圍的代理人',
+    'country': '來自哪個國家',
+    'intent': '目的',
+    'intent-student': '學生',
+    'intent-work': '工作',
+    'intent-greencard': '綠卡',
+    'intent-citizenship': '永久居住權',
+    'signup': '申請帳號',
+    'email': '電子郵件',
+    'password': '密碼',
+    'login': '登入',
+    'logout': '登出',
+    'update-user-profile': '更新用戶資料',
+    'profile-label': '使用者資料',
+    'chat-label': '聊天室',
+    'info-label': '資源',
+    'language-label': '我也說這些語言',
+    'english': '英文',
+    'chinese': '中文',
+    'spanish': '西班牙語'
+  });
+
+  $translateProvider.translations('es', {
+    'landing-title': 'Hallo de Cabrini',
+    'landing-help': 'Los agentes locales que te rodean',
+    'country': 'País de origen',
+    'intent': 'Intención',
+    'intent-student': 'Estudiante',
+    'intent-work': 'Trabajo',
+    'intent-greencard': 'Tarjeta Verde',
+    'intent-citizenship': 'Ciudadanía',
+    'signup': 'Sign Up',
+    'email': 'Email',
+    'password': 'Password',
+    'login': 'Log In',
+    'logout': 'Log Out',
+    'update-user-profile': 'Perfil de usuario de actualización',
+    'profile-label': 'Profile',
+    'chat-label': 'Chat',
+    'info-label': 'Info',
+    'language-label': 'I also speak',
+    'english': 'English',
+    'chinese': 'Chinese',
+    'spanish': 'Spanish'
+  });
+
+  $translateProvider.preferredLanguage('en');
+}])
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -29,8 +105,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+  .state('landing', {
+    url: '/',
+    templateUrl: 'templates/landing.html',
+    controller: 'LandingCtrl as landing'
+  })
+
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: "/tab",
     abstract: true,
     templateUrl: "templates/tabs.html"
@@ -38,34 +120,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.info', {
+    url: '/info',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-info': {
+        templateUrl: 'templates/tab-info.html'
       }
     }
   })
 
   .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
+    url: '/chats',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/tab-chats.html'
       }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
+    }
+  })
 
   .state('tab.account', {
     url: '/account',
@@ -78,6 +149,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/');
 
 });

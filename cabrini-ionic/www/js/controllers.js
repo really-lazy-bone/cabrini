@@ -1,24 +1,46 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('LandingCtrl', function($state, Language) {
+  var self = this;
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-  
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
+  self.changingLanguage = false;
+  self.isLogin = false;
+  self.language = Language.get();
+  self.languageCode = Language.getCode();
+
+  self.signup = signup;
+  self.login = login;
+  self.changeLanguage = changeLanguage;
+  self.setLanguage = setLanguage;
+  self.toLogin = toLogin;
+  self.toSignup = toSignup;
+
+  function signup () {
+    $state.go('tab.info');
   }
-})
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+  function login () {
+    $state.go('tab.info');
+  }
+
+  function changeLanguage () {
+    self.changingLanguage = true;
+  }
+
+  function setLanguage (language) {
+    Language.set(language);
+    self.language = Language.get();
+    self.languageCode = Language.getCode();
+    self.changingLanguage = false;
+  }
+
+  function toLogin () {
+    self.isLogin = true;
+  }
+
+  function toSignup () {
+    self.isLogin = false;
+  }
 })
 
 .controller('AccountCtrl', function($scope) {

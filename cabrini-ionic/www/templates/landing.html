@@ -1,0 +1,133 @@
+<ion-pane>
+	<ion-header-bar class="bar-positive">
+        <h1 class="title">Cabrini</h1>
+		<button class="button button-clear"
+			ng-click="landing.changeLanguage()">
+			{{ landing.languageCode }}
+			<i class="icon ion-android-arrow-dropdown"></i>
+		</button>
+	</ion-header-bar>
+	<ion-content ng-show="landing.changingLanguage">
+		<ul class="list">
+			<li class="item item-divider"
+				ng-click="landing.setLanguage('English')">
+				English
+			</li>
+			<li class="item item-divider"
+				ng-click="landing.setLanguage('Chinese')">
+				中文 (Chinese)
+			</li>
+			<li class="item item-divider"
+				ng-click="landing.setLanguage('Spanish')">
+				Spanish
+			</li>
+		</ul>
+	</ion-content>
+	<ion-content ng-show="!landing.changingLanguage">
+		<div class="list">
+			<div class="item item-divider">
+				{{'landing-title' | translate}}
+			</div>
+			<div class="item">
+			<div id="cabrini-map">
+				<!-- Map canvas -->
+			</div>
+			<div>
+				{{'landing-help' | translate}}
+			</div>
+			</div>
+			<div class="item" ng-show="!landing.isLogin">
+				<label class="item item-input item-stack-label">
+					<span class="input-label">
+						{{'country' | translate}}
+					</span>
+					<input type="text"
+						placeholder="{{'country' | translate}}"
+						ng-model="landing.country">
+				</label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+						{{'intent' | translate}}
+					</div>
+					<select>
+						<option>{{'intent-student' | translate}}</option>
+						<option>{{'intent-work' | translate}}</option>
+						<option>{{'intent-greencard' | translate}}</option>
+						<option>{{'intent-citizenship' | translate}}</option>
+					</select>
+				</label>
+				<div class="item item-divider">
+					{{'language-label' | translate}}
+				</div>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					{{'english' | translate}}
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					{{'chinese' | translate}}
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox">
+					</label>
+					{{'spanish' | translate}}
+				</li>
+				<label class="item item-input item-stack-label">
+					<span class="input-label">
+						{{'email' | translate}}
+					</span>
+					<input type="text"
+						placeholder="{{'email' | translate}}"
+						ng-model="landing.email">
+				</label>
+				<label class="item item-input item-stack-label">
+					<span class="input-label">
+						{{'password' | translate}}
+					</span>
+					<input type="password"
+						placeholder="{{'password' | translate}}"
+						ng-model="landing.password">
+				</label>
+				<button class="button button-positive button-block"
+				ng-click="landing.signup()">
+					{{'signup' | translate}}
+				</button>
+				<button class="button button-block button-calm"
+					ng-click="landing.toLogin()">
+					{{'login' | translate}}
+				</button>
+			</div>
+			<div class="item" ng-show="landing.isLogin">
+				<label class="item item-input item-stack-label">
+					<span class="input-label">
+						{{'email' | translate}}
+					</span>
+					<input type="text"
+						placeholder="{{'email' | translate}}"
+						ng-model="landing.email">
+				</label>
+				<label class="item item-input item-stack-label">
+					<span class="input-label">
+						{{'password' | translate}}
+					</span>
+					<input type="password"
+						placeholder="{{'password' | translate}}"
+						ng-model="landing.password">
+				</label>
+				<button class="button button-block button-positive"
+					ng-click="landing.login()">
+					{{'login' | translate}}
+				</button>
+				<button class="button button-calm button-block"
+				ng-click="landing.toSignup()">
+					{{'signup' | translate}}
+				</button>
+			</div>
+		</div>
+	</ion-content>
+</ion-pane>
