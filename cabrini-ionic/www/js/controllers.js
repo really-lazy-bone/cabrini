@@ -165,7 +165,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('OrganizationInfoCtrl', function($rootScope, $state, TaskService) {
+.controller('OrganizationInfoCtrl', function($rootScope, $state, TaskService, $stateParams, OrganizationService) {
   var self = this;
 
   // dummy task when creating one
@@ -181,6 +181,14 @@ angular.module('starter.controllers', [])
     to_do_items: [
     ]
   };
+  self.taskId = $stateParams.taskId;
+
+  if (self.taskId) {
+    OrganizationService.getMatchUsers()
+      .then(function(response) {
+        self.users = response.data;
+      });
+  }
 
   TaskService.getOrganizationTaskList()
     .then(function(response) {
@@ -196,6 +204,7 @@ angular.module('starter.controllers', [])
 
   self.toCreateTask = toCreateTask;
   self.toCreateGeneralInfo = toCreateGeneralInfo;
+  self.toAssignTask = toAssignTask;
 
   self.addStep();
 
@@ -217,7 +226,7 @@ angular.module('starter.controllers', [])
   function addTodo (step) {
     step.to_do_items.push(step.newTodo);
     step.newTodo = {
-      description: ''
+      name: ''
     };
   }
 
@@ -231,5 +240,9 @@ angular.module('starter.controllers', [])
 
   function toCreateGeneralInfo () {
     $state.go('organizationTab.createGeneralInfo');
+  }
+
+  function toAssignTask (task) {
+    $state.go('organizationTab.assignTask', {taskId: task._id});
   }
 });

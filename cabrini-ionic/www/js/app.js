@@ -191,6 +191,16 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'ng-mfb', 'starter
     }
   })
 
+  .state('organizationTab.assignTask', {
+    url: '/assign-task/:taskId',
+    views: {
+      'tab-info': {
+        templateUrl: 'templates/organization-tab-assignTask.html',
+        controller: 'OrganizationInfoCtrl as info'
+      }
+    }
+  })
+
   .state('organizationTab.createGeneralInfo', {
     url: '/create-general-info',
     views: {
