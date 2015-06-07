@@ -39,7 +39,7 @@ router.post('/create', function (req, res) {
   console.log(TaskData);
 });
 
-router.post('/assign:taskID/:userID', function (req, res) {
+router.post('/assign/:taskID/:userID', function (req, res) {
   var userID =  req.param("userID");
   var taskID = req.param("taskID");
   Task.findOne({

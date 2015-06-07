@@ -1,32 +1,31 @@
+var User = require('../models/User');
+var Organization = require('../models/Organization');
 var matching = {
-	/*Simple Implementation of Jaccard Index: http://people.revoledu.com/kardi/tutorial/Similarity/Jaccard.html
-	  This returns a numeric distance between a user and an organization based on countries, languages, and immigration interests.
-	  
-	  return value is percentage like 0.98 and so on, 1 is maximum
-	  
-	  Weighted percentages:
-	  ----------------------
-	  Languages: 70%;
-	  immigration interest: 20%;
-	  countries: 10%;
-	  
-	  
-	*/
+	getOrgMatch: function (userEmail) {
+		var matchedOrgnization;
+		User.findOne({
+			email: userEmail
+		}, function (err, existingUser) {
+				if (existingUser) {
+					//Found users. Loop through all orgs, and find best match,
+					Organization.find({}, function (err, allOrgs) {
+						for (var i = 0; i < allOrgs.length; i++) {
+							allOrgs[i].rank = matching.computeDistances(existingUser, allOrgs[i]);
+						}
+						allOrgs.sort(function (a, b) {
+							return a.rank - b.rank;
+						});
+						matchedOrgnization = allOrgs[allOrgs.length-1];
+					});
+				}
+				
+			});
+			return matchedOrgnization;
+	},
 	computeDistances: function (user, organization) {
 		
 		//Countries
-		var userCountries = user.countries;
-		var matchingCountries = [];
-		var oragnizationCountries = organization.countries;
-		for (var i = 0; i < userCountries.length; i++) {
-			if (oragnizationCountries.indexOf(userCountries[i]) > -1) {
-				matchingCountries.push(userCountries[i]);
-			}
-
-		}
-		//1 is maximum. an example value will be 0.98
-		var countrySimilarity = matchingCountries.length/userCountries.length;
-
+		var countrySimilarity = user.country == organization.country? 1:0;
 		//Languages
 		var userLanguages = user.languages;
 		var matchingLanguages = [];
@@ -38,7 +37,7 @@ var matching = {
 
 		}
 
-		var launguageSimilarity = matchingLanguages.length/userLanguages.length;
+		var launguageSimilarity = matchingLanguages.length / userLanguages.length;
 
 		//Languages
 		var userImmigrationInterests = user.immigration_interests;
@@ -51,10 +50,9 @@ var matching = {
 
 		}
 
-		var immigrationInterestsSimilarity = matchingImmigratioInterests.length/userImmigrationInterests.length;
+		var immigrationInterestsSimilarity = matchingImmigratioInterests.length / userImmigrationInterests.length;
 
 		return launguageSimilarity * 0.7 + immigrationInterestsSimilarity * 0.2 + countrySimilarity * 0.1;
-		
 
 
 	}

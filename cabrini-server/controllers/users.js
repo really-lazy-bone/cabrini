@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
+var matching = require('../models/matching');
 
 router.post('/signup', function (req, res) {
   var userData = req.body;
@@ -36,6 +37,23 @@ router.post('/signin', function (req, res) {
       }
 
     });
+
+});
+router.get('/match/:userEmail', function (req, res) {
+  var userEmail = req.param("userEmail");
+  var matchingOrg = matching.getOrgMatch(userEmail);
+  if (matchingOrg) {
+    delete matchingOrg.rank;
+    matchingOrg.save(function (err) {
+      if (err) throw err;
+      res.send(JSON.stringify(matchingOrg));
+    });
+
+  }
+  else {
+    res.sendStatus(404);
+
+  }
 
 
 });

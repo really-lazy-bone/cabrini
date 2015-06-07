@@ -61,13 +61,13 @@ User.find({}, function(err, users) {
   res.send(users);
 });
 */
-Task.find({}).populate('steps').exec(function (err, tasks) {
-  if (err) throw err;
+// Task.find({}).populate('steps').exec(function (err, tasks) {
+//   if (err) throw err;
   
-  res.send(tasks);
-});
+//   res.send(tasks);
+// });
 
-
+//res.sendfile("maptest.html");
 
 });
 

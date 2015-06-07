@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+var User = require('../models/User');
 
 var organizationSchema = new Schema({
   name: String,
@@ -14,6 +14,7 @@ var organizationSchema = new Schema({
   phone_number: Number,
   x: Number,
   y: Number,
+  users: [User],
   created_at: Date,
   updated_at: Date
 });
