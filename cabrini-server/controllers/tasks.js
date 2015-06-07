@@ -2,19 +2,24 @@ var express = require('express');
 var router = express.Router();
 var Task = require('../models/Task');
 
+//Only get unassigned todo List of Org
 router.get('/organizaton/list/:id', function (req, res) {
-
   var orgID = Number(req.param("id"));
-  Task.find({ org_id: orgID }, function (err, tasks) {
-    if (err) throw err;
-    res.send(JSON.stringify(tasks));
-  });
+  Task.find({
+    $and: [
+      { org_id: orgID },
+      { user_id: {$exists: false} }
+    ]
+  }, function (err, tasks) {
+      if (err) throw err;
+      res.send(JSON.stringify(tasks));
+    });
 
 });
 
 router.get('/user/list:id', function (req, res) {
 
- var userID = Number(req.param("id"));
+  var userID = Number(req.param("id"));
   Task.find({ user_id: userID }, function (err, tasks) {
     if (err) throw err;
     res.send(JSON.stringify(tasks));
