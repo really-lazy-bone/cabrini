@@ -1,18 +1,26 @@
 angular.module('starter.controllers', [])
 
-.controller('LandingCtrl', function($scope, Language) {
+.controller('LandingCtrl', function($state, Language) {
   var self = this;
 
   self.changingLanguage = false;
+  self.isLogin = false;
   self.language = Language.get();
   self.languageCode = Language.getCode();
 
-  self.connect = connect;
+  self.signup = signup;
+  self.login = login;
   self.changeLanguage = changeLanguage;
   self.setLanguage = setLanguage;
+  self.toLogin = toLogin;
+  self.toSignup = toSignup;
 
-  function connect () {
-    console.log(self.language);
+  function signup () {
+    $state.go('tab.info');
+  }
+
+  function login () {
+    $state.go('tab.info');
   }
 
   function changeLanguage () {
@@ -24,6 +32,14 @@ angular.module('starter.controllers', [])
     self.language = Language.get();
     self.languageCode = Language.getCode();
     self.changingLanguage = false;
+  }
+
+  function toLogin () {
+    self.isLogin = true;
+  }
+
+  function toSignup () {
+    self.isLogin = false;
   }
 })
 

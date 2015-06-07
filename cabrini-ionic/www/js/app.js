@@ -25,37 +25,73 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
   $translateProvider.translations('en', {
     'landing-title': 'Hello from Cabrini',
     'landing-help': 'Local agents around you.',
-    'landing-country': 'Country of Origin',
-    'landing-intent': 'Intent',
-    'landing-intent-student': 'Student',
-    'landing-intent-work': 'Work',
-    'landing-intent-greencard': 'Green Card',
-    'landing-intent-citizenship': 'Citizenship',
-    'landing-connect': 'Connect!'
+    'country': 'Country of Origin',
+    'intent': 'Intent',
+    'intent-student': 'Student',
+    'intent-work': 'Work',
+    'intent-greencard': 'Green Card',
+    'intent-citizenship': 'Citizenship',
+    'signup': 'Sign Up',
+    'email': 'Email',
+    'password': 'Password',
+    'login': 'Log In',
+    'logout': 'Log Out',
+    'update-user-profile': 'Update Profile',
+    'profile-label': 'Profile',
+    'chat-label': 'Chat',
+    'info-label': 'Info',
+    'language-label': 'I also speak',
+    'english': 'English',
+    'chinese': 'Chinese',
+    'spanish': 'Spanish'
   });
 
   $translateProvider.translations('ch', {
     'landing-title': '來自Cabrini的歡迎',
     'landing-help': '你周圍的代理人',
-    'landing-country': '來自哪個國家',
-    'landing-intent': '目的',
-    'landing-intent-student': '學生',
-    'landing-intent-work': '工作',
-    'landing-intent-greencard': '綠卡',
-    'landing-intent-citizenship': '永久居住權',
-    'landing-connect': '開始！'
+    'country': '來自哪個國家',
+    'intent': '目的',
+    'intent-student': '學生',
+    'intent-work': '工作',
+    'intent-greencard': '綠卡',
+    'intent-citizenship': '永久居住權',
+    'signup': '申請帳號',
+    'email': '電子郵件',
+    'password': '密碼',
+    'login': '登入',
+    'logout': '登出',
+    'update-user-profile': '更新用戶資料',
+    'profile-label': '使用者資料',
+    'chat-label': '聊天室',
+    'info-label': '資源',
+    'language-label': '我也說這些語言',
+    'english': '英文',
+    'chinese': '中文',
+    'spanish': '西班牙語'
   });
 
   $translateProvider.translations('es', {
     'landing-title': 'Hallo de Cabrini',
     'landing-help': 'Los agentes locales que te rodean',
-    'landing-country': 'País de origen',
-    'landing-intent': 'Intención',
-    'landing-intent-student': 'Estudiante',
-    'landing-intent-work': 'Trabajo',
-    'landing-intent-greencard': 'Tarjeta Verde',
-    'landing-intent-citizenship': 'Ciudadanía',
-    'landing-connect': 'Conectar'
+    'country': 'País de origen',
+    'intent': 'Intención',
+    'intent-student': 'Estudiante',
+    'intent-work': 'Trabajo',
+    'intent-greencard': 'Tarjeta Verde',
+    'intent-citizenship': 'Ciudadanía',
+    'signup': 'Sign Up',
+    'email': 'Email',
+    'password': 'Password',
+    'login': 'Log In',
+    'logout': 'Log Out',
+    'update-user-profile': 'Perfil de usuario de actualización',
+    'profile-label': 'Profile',
+    'chat-label': 'Chat',
+    'info-label': 'Info',
+    'language-label': 'I also speak',
+    'english': 'English',
+    'chinese': 'Chinese',
+    'spanish': 'Spanish'
   });
 
   $translateProvider.preferredLanguage('en');
@@ -84,34 +120,23 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.info', {
+    url: '/info',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-info': {
+        templateUrl: 'templates/tab-info.html'
       }
     }
   })
 
   .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
+    url: '/chats',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/tab-chats.html'
       }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
+    }
+  })
 
   .state('tab.account', {
     url: '/account',
