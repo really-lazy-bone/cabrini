@@ -7,7 +7,7 @@ var userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   languages: [String],
   country: String,
-  immigration_interests : [{ type: Schema.Types.ObjectId, ref: 'ImmigrationInterest' }],
+  immigration_interests : [String],
   created_at: Date,
   updated_at: Date
 });
