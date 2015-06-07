@@ -3,12 +3,14 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var User = require('./models/User');
-var ToDoList = require('./models/ToDoList');
-var ToDoListItem = require('./models/ToDoListItem');
+var Task = require('./models/Task');
+var Step = require('./models/Step');
+var ToDoItem = require('./models/ToDoItem');
 
 app.use(bodyParser.json());
 app.use('/users', require('./controllers/users'));
 app.use('/organizations', require('./controllers/organizations'));
+app.use('/tasks', require('./controllers/tasks'));
 
 mongoose.connect('mongodb://localhost/test');
  /*
@@ -17,21 +19,34 @@ mongoose.connect('mongodb://localhost/test');
        
 });
 */
-/*
-var toDoList = new ToDoList({ _id: 0, title: 'Test to-do List', age: 100 });
-toDoList.save(function (err) {
-  if (err) throw err;
-  
- var toDoListItem = new ToDoListItem({_todo_list_id: toDoList._id, text: 'Get your birth certificate'});
-  
-  toDoListItem.save(function (err) {
-    if (err) throw err;
-  });
-  
-  toDoList.items.push(toDoListItem);
-toDoList.save();
-});
-*/
+
+// var task = new Task({category: 'i20'});
+// var steps = [{name: "Step 1: Create an Applicaiton", comment: "hahahha"}, 
+// var steps = new Step({name: "Step 1: Create an Applicaiton", comment: "hahahha"});
+// var toDoItems = new ToDoItem({name: "photocopy your passport"});
+   
+// toDoItem.save(function (err) {
+//     if (err) throw err;
+//        step.to_do_items.push(toDoItem);
+//        step.save(function (err) {
+//     if (err) throw err;
+//              task.steps.push(step);
+//              task.save();
+      
+//       });
+// });  
+
+// toDoItem.save(function (err) {
+//     if (err) throw err;
+//        step.to_do_items.push(toDoItem);
+//        step.save(function (err) {
+//     if (err) throw err;
+//              task.steps.push(step);
+//              task.save();
+      
+//       });
+// });  
+
 
 var port = process.env.PORT || 1337;
 
@@ -48,9 +63,10 @@ User.find({}, function(err, users) {
   res.send(users);
 });
 */
-ToDoList.find({}).populate('items').exec(function (err, toDoList) {
+Task.find({}).populate('steps').exec(function (err, tasks) {
   if (err) throw err;
-  res.send(toDoList);
+  
+  res.send(tasks);
 });
 
 
