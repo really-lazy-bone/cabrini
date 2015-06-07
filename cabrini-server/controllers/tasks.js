@@ -36,8 +36,8 @@ router.post('/:taskID/step/:stepID/todo/:todoID/:completed', function (req, res)
 
   Task.findOne({ _id: taskID }, function (err, task) {
     if (err) throw err;
-    var step = task.step.id(stepID);
-    var todoItem = step.to_do_items.id(todoID);
+    var steps = task.steps.id(stepID);
+    var todoItem = steps.to_do_items.id(todoID);
     todoItem.completed = completed;
     task.save(function (err) {
       if (err) throw err;
