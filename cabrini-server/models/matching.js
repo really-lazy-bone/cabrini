@@ -35,7 +35,12 @@ var matching = {
 		}
 
 		var immigrationInterestsSimilarity = matchingImmigratioInterests.length / userImmigrationInterests.length;
-
+		
+		console.log("user is : ");
+		console.log(user);
+		console.log("organization is : ");
+		console.log(organization);
+		console.log("rank is: "+(launguageSimilarity * 0.7 + immigrationInterestsSimilarity * 0.2 + countrySimilarity * 0.1));
 		return launguageSimilarity * 0.7 + immigrationInterestsSimilarity * 0.2 + countrySimilarity * 0.1;
 
 
