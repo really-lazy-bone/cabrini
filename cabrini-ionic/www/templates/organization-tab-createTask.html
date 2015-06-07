@@ -1,0 +1,58 @@
+<ion-view view-title="{{'info-label' | translate}}">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="Task Category"
+          ng-model="info.task.category">
+      </label>
+
+      <div class="item item-divider">
+        Steps
+      </div>
+      <div class="list"
+        ng-repeat="step in info.task.steps">
+        <div class="item card">
+          <label class="item item-input">
+            <input type="text" placeholder="Step/Task Name"
+              ng-model="step.name">
+          </label>
+          <div class="item item-divider">
+            Todo List
+          </div>
+          <div class="list todo"
+            ng-repeat="todo in step.todos">
+            <div class="item item-icon-left item-icon-right">
+              <i class="icon ion-checkmark icon-small"></i>
+              {{todo.description}}
+              <i class="icon ion-close icon-small"
+                ng-click="info.deleteTodo(step, $index)"></i>
+            </div>
+          </div>
+          <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+              <input type="text" placeholder="Task Description"
+                ng-model="step.newTodo.description">
+            </label>
+            <button class="button button-small"
+              ng-click="info.addTodo(step)">
+              <i class="icon ion-plus"></i>
+            </button>
+          </div>
+          <label class="item item-input">
+            <textarea placeholder="Comments" rows="10"
+              ng-model="step.comment"></textarea>
+          </label>
+        </div>
+      </div>
+
+      <button class="button button-block button-calm"
+        ng-click="info.addStep()">
+        Add Step
+      </button>
+      <button class="button button-block button-positive"
+        ng-click="info.createTask()">
+        Finish
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

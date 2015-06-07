@@ -92,7 +92,6 @@ angular.module('starter.controllers', [])
   self.setLanguage = setLanguage;
   self.toLogin = toLogin;
   self.toSignup = toSignup;
-  self.toOrganizationSignup = toOrganizationSignup;
   self.goback = goback;
 
   function signup () {
@@ -107,7 +106,6 @@ angular.module('starter.controllers', [])
     if (self.spanish) {
       languages.push('Spanish');
     }
-
     if (self.student) {
       interests.push('Student');
     }
@@ -122,11 +120,12 @@ angular.module('starter.controllers', [])
     }
 
     self.user.languages = languages;
+    self.user.immigration_interests = interests;
 
     OrganizationService.signup(self.user)
       .then(function(response) {
         sessionStorage.setItem('user', JSON.stringify(response.data));
-        $state.go('tab.info');
+        $state.go('organizationTab.info');
       });
   }
 
@@ -134,7 +133,7 @@ angular.module('starter.controllers', [])
     OrganizationService.login(self.user)
       .then(function(response) {
         sessionStorage.setItem('user', JSON.stringify(response.data));
-        $state.go('tab.info');
+        $state.go('organizationTab.info');
       });
   }
 
@@ -157,11 +156,70 @@ angular.module('starter.controllers', [])
     self.isLogin = false;
   }
 
-  function toOrganizationSignup () {
-    $state.go('organization-signup');
-  }
-
   function goback () {
     $state.go('landing');
+  }
+})
+
+.controller('OrganizationInfoCtrl', function($state, TaskService) {
+  var self = this;
+
+  // dummy task when creating one
+  self.task = {
+    category: '',
+    steps: [
+    ]
+  };
+  self.dummyStep = {
+    name: '',
+    comment: '',
+    todos: [
+    ]
+  };
+
+  self.createTask = createTask;
+  self.createGeneralInfo = createGeneralInfo;
+
+  self.addStep = addStep;
+  self.addTodo = addTodo;
+  self.deleteTodo = deleteTodo;
+
+  self.toCreateTask = toCreateTask;
+  self.toCreateGeneralInfo = toCreateGeneralInfo;
+
+  self.addStep();
+
+  function createTask () {
+    TaskService.createTask()
+      .then(function(response) {
+        $state.go('organizationTab.info');
+      });
+  }
+
+  function createGeneralInfo () {
+    // body...
+  }
+
+  function addStep () {
+    self.task.steps.push(angular.copy(self.dummyStep));
+  }
+
+  function addTodo (step) {
+    step.todos.push(step.newTodo);
+    step.newTodo = {
+      description: ''
+    };
+  }
+
+  function deleteTodo (step, index) {
+    step.todos.splice(index, 1);
+  }
+
+  function toCreateTask () {
+    $state.go('organizationTab.createTask');
+  }
+
+  function toCreateGeneralInfo () {
+    $state.go('organizationTab.createGeneralInfo');
   }
 });

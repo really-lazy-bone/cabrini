@@ -2,7 +2,8 @@ angular.module('starter.services', [])
 
 .factory('Setting', function() {
   return {
-    serverUrl: 'http://localhost:1337'
+    serverUrl: 'http://localhost:1337',
+    firebaseUrl: ''
   };
 })
 
@@ -52,7 +53,7 @@ angular.module('starter.services', [])
   }
 })
 
-.service('Organization', function($http, Setting) {
+.service('OrganizationService', function($http, Setting) {
   return {
     signup: signup,
     login: login
@@ -63,6 +64,28 @@ angular.module('starter.services', [])
   }
 
   function login (agent) {
-    return $http.post(Setting.serverUrl + '/organization/signin', agent);
+    return $http.post(Setting.serverUrl + '/organizations/signin', agent);
+  }
+})
+
+.service('TaskService', function($http, Setting) {
+  return {
+    createTask: createTask,
+    list: list,
+    updateTodo: updateTodo
+  };
+
+  function createTask (task) {
+    return $http.post(Setting.serverUrl + '/tasks/create', task);
+  }
+
+  function list () {
+    return $http.get(Setting.serverUrl + '/tasks/list');
+  }
+
+  function updateTodo (taskId, todoId, done) {
+    return $http.post(
+      Setting.serverUrl + '/tasks/' + taskId + '/todo/' + todoId
+    );
   }
 });

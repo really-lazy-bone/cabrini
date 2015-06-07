@@ -45,6 +45,14 @@
 				</label>
 				<label class="item item-input item-stack-label">
 					<span class="input-label">
+						{{'name' | translate}}
+					</span>
+					<input type="text"
+						placeholder="{{'name' | translate}}"
+						ng-model="signup.user.name">
+				</label>
+				<label class="item item-input item-stack-label">
+					<span class="input-label">
 						{{'phone' | translate}}
 					</span>
 					<input type="text"
@@ -127,6 +135,7 @@
 				ng-click="signup.signup()">
 					{{'signup' | translate}}
 				</button>
+				<br>
 				<button class="button button-block button-calm"
 					ng-click="signup.toLogin()">
 					{{'login' | translate}}
@@ -139,7 +148,7 @@
 					</span>
 					<input type="text"
 						placeholder="{{'email' | translate}}"
-						ng-model="signup.email">
+						ng-model="signup.user.email">
 				</label>
 				<label class="item item-input item-stack-label">
 					<span class="input-label">
@@ -147,12 +156,13 @@
 					</span>
 					<input type="password"
 						placeholder="{{'password' | translate}}"
-						ng-model="signup.password">
+						ng-model="signup.user.password">
 				</label>
 				<button class="button button-block button-positive"
 					ng-click="signup.login()">
 					{{'login' | translate}}
 				</button>
+				<br>
 				<button class="button button-calm button-block"
 				ng-click="signup.toSignup()">
 					{{'signup' | translate}}

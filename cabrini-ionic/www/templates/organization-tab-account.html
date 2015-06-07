@@ -1,0 +1,23 @@
+<ion-view view-title="{{'profile-label' | translate}}">
+	<ion-content>
+		<div class="list">
+			<div class="item item-button-right">
+				{{'logout' | translate}}
+				<button class="button button-positive"
+					ng-click="profile.logout()">
+					<i class="icon ion-log-out"></i>
+				</button>
+			</div>
+
+			<div class="item item-divider">
+				{{'update-user-profile' | translate}}
+			</div>
+			<label class="item item-input">
+				<input type="text" placeholder="{{'country' | translate}}">
+			</label>
+			<label class="item item-input">
+				<input type="text" placeholder="{{'intent' | translate}}">
+			</label>
+		</div>
+	</ion-content>
+</ion-view>

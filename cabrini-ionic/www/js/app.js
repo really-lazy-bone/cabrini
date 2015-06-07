@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'pascalprecht.translate', 'ng-mfb', 'starter.controllers', 'starter.services'])
 
 .run(function($rootScope, $http) {
   $rootScope.user = (sessionStorage.getItem('user') || null);
@@ -59,7 +59,8 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     'organization-country': 'Country',
     'organization-language-label': 'Supported Languages',
     'address': 'Address',
-    'phone': 'Phone Number'
+    'phone': 'Phone Number',
+    'name': 'Name'
   });
 
   $translateProvider.translations('ch', {
@@ -89,7 +90,8 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     'organization-country': '國家',
     'organization-language-label': '支持語言',
     'address': '地址',
-    'phone': '電話號碼'
+    'phone': '電話號碼',
+    'name': '名字'
   });
 
   $translateProvider.preferredLanguage('en');
@@ -150,6 +152,66 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     views: {
       'tab-account': {
         templateUrl: 'templates/tab-account.html',
+        controller: 'ProfileCtrl as profile'
+      }
+    }
+  })
+
+  .state('organizationTab', {
+    url: "/organization/tab",
+    abstract: true,
+    templateUrl: "templates/organization-tabs.html",
+    controller: function(Language) {
+
+    }
+  })
+
+  // Each tab has its own nav history stack:
+
+  .state('organizationTab.info', {
+    url: '/info',
+    views: {
+      'tab-info': {
+        templateUrl: 'templates/organization-tab-info.html',
+        controller: 'OrganizationInfoCtrl as info'
+      }
+    }
+  })
+
+  .state('organizationTab.createTask', {
+    url: '/create-task',
+    views: {
+      'tab-info': {
+        templateUrl: 'templates/organization-tab-createTask.html',
+        controller: 'OrganizationInfoCtrl as info'
+      }
+    }
+  })
+
+  .state('organizationTab.createGeneralInfo', {
+    url: '/create-general-info',
+    views: {
+      'tab-info': {
+        templateUrl: 'templates/organization-tab-createGeneralInfo.html',
+        controller: 'OrganizationInfoCtrl as info'
+      }
+    }
+  })
+
+  .state('organizationTab.chats', {
+    url: '/chats',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/organization-tab-chats.html'
+      }
+    }
+  })
+
+  .state('organizationTab.account', {
+    url: '/account',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/organization-tab-account.html',
         controller: 'ProfileCtrl as profile'
       }
     }
