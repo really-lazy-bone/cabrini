@@ -7,6 +7,16 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controllers', 'starter.services'])
 
+.run(function($rootScope, $http) {
+  $rootScope.user = (sessionStorage.getItem('user') || null);
+
+  if ($rootScope.user) {
+    $rootScope.user = JSON.parse($rootScope.user);
+    $http.defaults.headers.common.Authorization = 'Basic ' +
+      $rootScope.user.email + ':' + $rootScope.user.password;
+  }
+})
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -115,7 +125,10 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
   .state('tab', {
     url: "/tab",
     abstract: true,
-    templateUrl: "templates/tabs.html"
+    templateUrl: "templates/tabs.html",
+    controller: function(Language) {
+
+    }
   })
 
   // Each tab has its own nav history stack:
@@ -143,7 +156,7 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     views: {
       'tab-account': {
         templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+        controller: 'ProfileCtrl as profile'
       }
     }
   });

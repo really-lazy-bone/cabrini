@@ -43,13 +43,14 @@
 					</span>
 					<input type="text"
 						placeholder="{{'country' | translate}}"
-						ng-model="landing.country">
+						ng-model="landing.user.country">
 				</label>
 				<label class="item item-input item-select">
 					<div class="input-label">
 						{{'intent' | translate}}
 					</div>
-					<select>
+					<select
+						ng-model="landing.user.immigration_interests">
 						<option>{{'intent-student' | translate}}</option>
 						<option>{{'intent-work' | translate}}</option>
 						<option>{{'intent-greencard' | translate}}</option>
@@ -61,19 +62,19 @@
 				</div>
 				<li class="item item-checkbox">
 					<label class="checkbox">
-					<input type="checkbox">
+					<input type="checkbox" ng-model="landing.english">
 					</label>
 					{{'english' | translate}}
 				</li>
 				<li class="item item-checkbox">
 					<label class="checkbox">
-					<input type="checkbox">
+					<input type="checkbox" ng-model="landing.chinese">
 					</label>
 					{{'chinese' | translate}}
 				</li>
 				<li class="item item-checkbox">
 					<label class="checkbox">
-					<input type="checkbox">
+					<input type="checkbox" ng-model="landing.spanish">
 					</label>
 					{{'spanish' | translate}}
 				</li>
@@ -83,7 +84,7 @@
 					</span>
 					<input type="text"
 						placeholder="{{'email' | translate}}"
-						ng-model="landing.email">
+						ng-model="landing.user.email">
 				</label>
 				<label class="item item-input item-stack-label">
 					<span class="input-label">
@@ -91,7 +92,7 @@
 					</span>
 					<input type="password"
 						placeholder="{{'password' | translate}}"
-						ng-model="landing.password">
+						ng-model="landing.user.password">
 				</label>
 				<button class="button button-positive button-block"
 				ng-click="landing.signup()">

@@ -1,8 +1,15 @@
 angular.module('starter.services', [])
 
+.factory('Setting', function() {
+  return {
+    serverUrl: 'http://localhost:1337'
+  };
+})
+
 .factory('Language', function($translate) {
   var self = this;
   self.language = (localStorage.getItem('language') || 'English');
+  $translate.use(getCodeHelper(self.language));
 
   function getCodeHelper (language) {
     switch (language) {
@@ -20,7 +27,6 @@ angular.module('starter.services', [])
       return getCodeHelper(self.language).toUpperCase();
     },
     get: function() {
-      $translate.use(getCodeHelper(self.language));
       return self.language;
     },
     set: function(language) {
@@ -29,4 +35,19 @@ angular.module('starter.services', [])
       $translate.use(getCodeHelper(self.language));
     }
   };
+})
+
+.service('UserService', function($http, Setting) {
+  return {
+    signup: signup,
+    login: login
+  };
+
+  function signup (user) {
+    return $http.post(Setting.serverUrl + '/rest/user/signup', user);
+  }
+
+  function login (user) {
+    return $http.post(Setting.serverUrl + '/rest/user/login', user);
+  }
 });

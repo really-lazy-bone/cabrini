@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('LandingCtrl', function($state, Language) {
+.controller('LandingCtrl', function($state, Language, UserService) {
   var self = this;
 
   self.changingLanguage = false;
@@ -16,11 +16,19 @@ angular.module('starter.controllers', [])
   self.toSignup = toSignup;
 
   function signup () {
-    $state.go('tab.info');
+    UserService.signup(self.user)
+      .then(function(response) {
+        sessionStorage.setItem('user', JSON.stringify(response.data));
+        $state.go('tab.info');
+      });
   }
 
   function login () {
-    $state.go('tab.info');
+    UserService.login(self.user)
+      .then(function(response) {
+        sessionStorage.setItem('user', JSON.stringify(response.data));
+        $state.go('tab.info');
+      });
   }
 
   function changeLanguage () {
@@ -43,8 +51,12 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+.controller('ProfileCtrl', function($state) {
+  var self = this;
+
+  self.logout = logout;
+
+  function logout () {
+    $state.go('landing');
+  }
 });
