@@ -217,7 +217,7 @@ angular.module('starter.controllers', [])
   function addTodo (step) {
     step.to_do_items.push(step.newTodo);
     step.newTodo = {
-      description: ''
+      name: ''
     };
   }
 

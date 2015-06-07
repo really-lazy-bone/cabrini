@@ -23,7 +23,7 @@
             ng-repeat="todo in step.to_do_items">
             <div class="item item-icon-left item-icon-right">
               <i class="icon ion-checkmark icon-small"></i>
-              {{todo.description}}
+              {{todo.name}}
               <i class="icon ion-close icon-small"
                 ng-click="info.deleteTodo(step, $index)"></i>
             </div>
@@ -31,7 +31,7 @@
           <div class="item item-input-inset">
             <label class="item-input-wrapper">
               <input type="text" placeholder="Task Description"
-                ng-model="step.newTodo.description">
+                ng-model="step.newTodo.name">
             </label>
             <button class="button button-small"
               ng-click="info.addTodo(step)">
