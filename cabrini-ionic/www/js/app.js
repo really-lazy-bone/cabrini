@@ -145,7 +145,8 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'ng-mfb', 'starter
     url: '/chats',
     views: {
       'tab-chats': {
-        templateUrl: 'templates/tab-chats.html'
+        templateUrl: 'templates/tab-chats.html',
+        controller: 'ChatCtrl as chat'
       }
     }
   })

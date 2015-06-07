@@ -38,10 +38,11 @@ angular.module('starter.services', [])
   };
 })
 
-.service('UserService', function($http, Setting) {
+.service('UserService', function($http, Setting, $rootScope) {
   return {
     signup: signup,
-    login: login
+    login: login,
+    matchToOrganization: matchToOrganization
   };
 
   function signup (user) {
@@ -50,6 +51,10 @@ angular.module('starter.services', [])
 
   function login (user) {
     return $http.post(Setting.serverUrl + '/users/signin', user);
+  }
+
+  function matchToOrganization () {
+    return $http.post(Setting.serverUrl + '/users/match/' + $rootScope.user_id, user);
   }
 })
 

@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('LandingCtrl', function($state, Language, UserService) {
+.controller('LandingCtrl', function($state, Language, UserService, $rootScope) {
   var self = this;
 
   self.changingLanguage = false;
@@ -32,6 +32,7 @@ angular.module('starter.controllers', [])
     UserService.signup(self.user)
       .then(function(response) {
         sessionStorage.setItem('user', JSON.stringify(response.data));
+        $rootScope.user = response.data;
         $state.go('tab.info');
       });
   }
@@ -40,6 +41,7 @@ angular.module('starter.controllers', [])
     UserService.login(self.user)
       .then(function(response) {
         sessionStorage.setItem('user', JSON.stringify(response.data));
+        $rootScope.user = response.data;
         $state.go('tab.info');
       });
   }
@@ -80,9 +82,18 @@ angular.module('starter.controllers', [])
 
 .controller('InfoCtrl', function($state, TaskService) {
   var self = this;
+
+  TaskService.getImmigrantTaskList()
+    .then(function(response) {
+      self.tasks = response.data;
+    });
 })
 
-.controller('OrganizationSignupCtrl', function($state, Language, OrganizationService) {
+.controller('ChatCtrl', function(UserService) {
+
+})
+
+.controller('OrganizationSignupCtrl', function($state, Language, OrganizationService, $rootScope) {
   var self = this;
 
   self.changingLanguage = false;
@@ -129,6 +140,7 @@ angular.module('starter.controllers', [])
     OrganizationService.signup(self.user)
       .then(function(response) {
         sessionStorage.setItem('user', JSON.stringify(response.data));
+        $rootScope.user = response.data;
         $state.go('organizationTab.info');
       });
   }
@@ -137,6 +149,7 @@ angular.module('starter.controllers', [])
     OrganizationService.login(self.user)
       .then(function(response) {
         sessionStorage.setItem('user', JSON.stringify(response.data));
+        $rootScope.user = response.data;
         $state.go('organizationTab.info');
       });
   }
