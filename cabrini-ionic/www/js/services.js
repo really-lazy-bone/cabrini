@@ -53,10 +53,11 @@ angular.module('starter.services', [])
   }
 })
 
-.service('OrganizationService', function($http, Setting) {
+.service('OrganizationService', function($rootScope, $http, Setting) {
   return {
     signup: signup,
-    login: login
+    login: login,
+    getMatchUsers: getMatchUsers
   };
 
   function signup (agent) {
@@ -65,6 +66,10 @@ angular.module('starter.services', [])
 
   function login (agent) {
     return $http.post(Setting.serverUrl + '/organizations/signin', agent);
+  }
+
+  function getMatchUsers () {
+    return $http.get(Setting.serverUrl + '/organizations/users/' + $rootScope.user._id);
   }
 })
 
