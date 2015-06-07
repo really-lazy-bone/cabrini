@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var Task = require('../models/Task');
-var Step = require('../models/Step');
-var ToDoItem = require('../models/ToDoItem');
 
 router.post('/create', function (req, res) {
   var TaskData = req.body;
