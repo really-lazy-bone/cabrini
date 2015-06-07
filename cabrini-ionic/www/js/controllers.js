@@ -90,7 +90,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ChatCtrl', function(UserService) {
-
+  UserService.matchToOrganization();
 })
 
 .controller('OrganizationSignupCtrl', function($state, Language, OrganizationService, $rootScope) {
