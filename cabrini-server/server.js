@@ -5,6 +5,11 @@ var mongoose = require('mongoose');
 var User = require('./models/User');
 var ToDoList = require('./models/ToDoList');
 var ToDoListItem = require('./models/ToDoListItem');
+
+app.use(bodyParser.json());
+app.use('/users', require('./controllers/users'));
+
+
 mongoose.connect('mongodb://localhost/test');
  
  User.remove({}, function(err) { 
@@ -59,7 +64,7 @@ toDoList.save();
 
 var port = process.env.PORT || 1337;
 
-app.use(bodyParser.json());
+
 
 app.get('/', function (req, res) {
  
@@ -80,6 +85,9 @@ ToDoList.find({}).populate('items').exec(function (err, toDoList) {
 
 
 });
+
+
+
 
 var server = app.listen(port, function () {
 
