@@ -17,7 +17,7 @@ router.get('/organization/list/:id', function (req, res) {
 
 });
 
-router.get('/user/list:id', function (req, res) {
+router.get('/user/list/:id', function (req, res) {
 
   var userID = req.param("id");
   Task.find({ user_id: userID }, function (err, tasks) {
