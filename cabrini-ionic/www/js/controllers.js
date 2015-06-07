@@ -16,6 +16,18 @@ angular.module('starter.controllers', [])
   self.toSignup = toSignup;
 
   function signup () {
+    var languages = [];
+    if (self.english) {
+      languages.push('English');
+    }
+    if (self.chinese) {
+      languages.push('Chinese');
+    }
+    if (self.spanish) {
+      languages.push('Spanish');
+    }
+    self.user.languages = languages;
+
     UserService.signup(self.user)
       .then(function(response) {
         sessionStorage.setItem('user', JSON.stringify(response.data));

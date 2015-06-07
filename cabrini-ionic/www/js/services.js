@@ -44,7 +44,7 @@ angular.module('starter.services', [])
   };
 
   function signup (user) {
-    return $http.post(Setting.serverUrl + '/rest/user/signup', user);
+    return $http.post(Setting.serverUrl + '/users', user);
   }
 
   function login (user) {
