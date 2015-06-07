@@ -8,7 +8,7 @@ var ToDoListItem = require('./models/ToDoListItem');
 
 app.use(bodyParser.json());
 app.use('/users', require('./controllers/users'));
-
+app.use('/organizations', require('./controllers/organizations'));
 
 mongoose.connect('mongodb://localhost/test');
  /*
