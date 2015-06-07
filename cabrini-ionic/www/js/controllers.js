@@ -165,11 +165,12 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('OrganizationInfoCtrl', function($state, TaskService) {
+.controller('OrganizationInfoCtrl', function($rootScope, $state, TaskService) {
   var self = this;
 
   // dummy task when creating one
   self.task = {
+    org_id: $rootScope.user._id,
     category: '',
     steps: [
     ]
