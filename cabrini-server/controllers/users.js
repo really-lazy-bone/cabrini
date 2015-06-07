@@ -28,12 +28,10 @@ router.post('/signin', function (req, res) {
         }
         else {
           res.sendStatus(403);
-
         }
 
       }
       else {
-
         res.sendStatus(403);
       }
 

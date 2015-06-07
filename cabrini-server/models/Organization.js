@@ -4,16 +4,16 @@ var Schema = mongoose.Schema;
 
 var organizationSchema = new Schema({
   name: String,
-  username: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   languages: [String],
-  countries: [String],
-  immigration_interests : [{ type: Schema.Types.ObjectId, ref: 'ImmigrationInterest' }],
-  x: Number,
-  y: Number,
+  country: String,
+  immigration_interests : [String],
   address: String,
   website: String,
   phone_number: Number,
+  x: Number,
+  y: Number,
   created_at: Date,
   updated_at: Date
 });
