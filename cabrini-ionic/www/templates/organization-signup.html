@@ -37,7 +37,23 @@
 			<div class="item" ng-show="!signup.isLogin">
 				<label class="item item-input item-stack-label">
 					<span class="input-label">
-						{{'country' | translate}}
+						{{'address' | translate}}
+					</span>
+					<input type="text"
+						placeholder="{{'address' | translate}}"
+						ng-model="signup.user.address">
+				</label>
+				<label class="item item-input item-stack-label">
+					<span class="input-label">
+						{{'phone' | translate}}
+					</span>
+					<input type="text"
+						placeholder="{{'phone' | translate}}"
+						ng-model="signup.user.phone">
+				</label>
+				<label class="item item-input item-stack-label">
+					<span class="input-label">
+						{{'organization-country' | translate}}
 					</span>
 					<input type="text"
 						placeholder="{{'country' | translate}}"
@@ -71,7 +87,7 @@
 					{{'intent-citizenship' | translate}}
 				</li>
 				<div class="item item-divider">
-					{{'language-label' | translate}}
+					{{'organization-language-label' | translate}}
 				</div>
 				<li class="item item-checkbox">
 					<label class="checkbox">

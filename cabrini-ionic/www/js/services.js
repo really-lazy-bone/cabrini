@@ -50,4 +50,19 @@ angular.module('starter.services', [])
   function login (user) {
     return $http.post(Setting.serverUrl + '/users/signin', user);
   }
+})
+
+.service('Organization', function($http, Setting) {
+  return {
+    signup: signup,
+    login: login
+  };
+
+  function signup (agent) {
+    return $http.post(Setting.serverUrl + '/organizations/signup', agent);
+  }
+
+  function login (agent) {
+    return $http.post(Setting.serverUrl + '/organization/signin', agent);
+  }
 });

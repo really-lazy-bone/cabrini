@@ -55,7 +55,11 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     'chinese': 'Chinese',
     'spanish': 'Spanish',
     'organization-sign-up-label': 'Organization Sign Up Here',
-    'organization-intent-label': 'What intent you can help with?'
+    'organization-intent-label': 'What intent you can help with?',
+    'organization-country': 'Country',
+    'organization-language-label': 'Supported Languages',
+    'address': 'Address',
+    'phone': 'Phone Number'
   });
 
   $translateProvider.translations('ch', {
@@ -81,7 +85,11 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     'chinese': '中文',
     'spanish': '西班牙語',
     'organization-sign-up-label': '協會從此加入',
-    'organization-intent-label': '領域專精'
+    'organization-intent-label': '領域專精',
+    'organization-country': '國家',
+    'organization-language-label': '支持語言',
+    'address': '地址',
+    'phone': '電話號碼'
   });
 
   $translateProvider.preferredLanguage('en');

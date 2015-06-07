@@ -78,7 +78,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('OrganizationSignupCtrl', function($state, Language) {
+.controller('OrganizationSignupCtrl', function($state, Language, OrganizationService) {
   var self = this;
 
   self.changingLanguage = false;
@@ -97,6 +97,7 @@ angular.module('starter.controllers', [])
 
   function signup () {
     var languages = [];
+    var interests = [];
     if (self.english) {
       languages.push('English');
     }
@@ -106,9 +107,23 @@ angular.module('starter.controllers', [])
     if (self.spanish) {
       languages.push('Spanish');
     }
+
+    if (self.student) {
+      interests.push('Student');
+    }
+    if (self.work) {
+      interests.push('Work');
+    }
+    if (self.greencard) {
+      interests.push('Green Card');
+    }
+    if (self.citizenship) {
+      interests.push('Citizenship');
+    }
+
     self.user.languages = languages;
 
-    UserService.signup(self.user)
+    OrganizationService.signup(self.user)
       .then(function(response) {
         sessionStorage.setItem('user', JSON.stringify(response.data));
         $state.go('tab.info');
@@ -116,7 +131,7 @@ angular.module('starter.controllers', [])
   }
 
   function login () {
-    UserService.login(self.user)
+    OrganizationService.login(self.user)
       .then(function(response) {
         sessionStorage.setItem('user', JSON.stringify(response.data));
         $state.go('tab.info');
