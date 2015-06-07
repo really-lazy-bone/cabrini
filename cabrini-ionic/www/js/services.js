@@ -2,7 +2,7 @@ angular.module('starter.services', [])
 
 .factory('Setting', function() {
   return {
-    serverUrl: 'http://localhost:1337',
+    serverUrl: 'http://45.55.245.238:1337',
     firebaseUrl: 'https://cabrini.firebaseio.com/'
   };
 })
