@@ -3,7 +3,7 @@ angular.module('starter.services', [])
 .factory('Setting', function() {
   return {
     serverUrl: 'http://localhost:1337',
-    firebaseUrl: ''
+    firebaseUrl: 'https://cabrini.firebaseio.com/'
   };
 })
 
