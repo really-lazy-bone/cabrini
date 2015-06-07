@@ -14,7 +14,10 @@ var organizationSchema = new Schema({
   phone_number: Number,
   x: Number,
   y: Number,
-  users: [User],
+  users: [{
+    type: Schema.ObjectId,
+    ref: 'User'
+  }],
   created_at: Date,
   updated_at: Date
 });

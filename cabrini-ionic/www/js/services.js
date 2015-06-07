@@ -54,7 +54,7 @@ angular.module('starter.services', [])
   }
 
   function matchToOrganization () {
-    return $http.post(Setting.serverUrl + '/users/match/' + $rootScope.user._id);
+    return $http.get(Setting.serverUrl + '/users/match/' + $rootScope.user._id);
   }
 })
 
