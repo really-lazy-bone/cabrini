@@ -10,10 +10,32 @@
 </nav>
 <ion-view view-title="{{'info-label' | translate}}">
   <ion-content>
-  	<div class="list card">
-  		<div class="item">
-  			Hello World
-  		</div>
+  	<div class="card"
+      ng-repeat="task in info.tasks">
+      <div class="item item-divider">
+        {{task.category}}
+      </div>
+      <div class="card"
+        ng-repeat="step in task.steps">
+        <div class="item divider">
+          {{step.name}}
+        </div>
+        <div class="item item-divider">
+          TODOs
+        </div>
+        <div class="list"
+          ng-repeat="todo in step.to_do_items">
+          <li class="item item-checkbox">
+            <label class="checkbox">
+              <input type="checkbox">
+            </label>
+            {{todo.name}}
+          </li>
+        </div>
+        <div class="item item-body">
+          {{step.comment}}
+        </div>
+      </div>
   	</div>
   </ion-content>
 </ion-view>

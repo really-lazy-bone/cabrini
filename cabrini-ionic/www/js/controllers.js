@@ -78,6 +78,10 @@ angular.module('starter.controllers', [])
   }
 })
 
+.controller('InfoCtrl', function($state, TaskService) {
+  var self = this;
+})
+
 .controller('OrganizationSignupCtrl', function($state, Language, OrganizationService) {
   var self = this;
 
@@ -173,9 +177,14 @@ angular.module('starter.controllers', [])
   self.dummyStep = {
     name: '',
     comment: '',
-    todos: [
+    to_do_items: [
     ]
   };
+
+  TaskService.getOrganizationTaskList()
+    .then(function(response) {
+      self.tasks = response.data;
+    });
 
   self.createTask = createTask;
   self.createGeneralInfo = createGeneralInfo;
@@ -190,7 +199,7 @@ angular.module('starter.controllers', [])
   self.addStep();
 
   function createTask () {
-    TaskService.createTask()
+    TaskService.createTask(self.task)
       .then(function(response) {
         $state.go('organizationTab.info');
       });
@@ -205,14 +214,14 @@ angular.module('starter.controllers', [])
   }
 
   function addTodo (step) {
-    step.todos.push(step.newTodo);
+    step.to_do_items.push(step.newTodo);
     step.newTodo = {
       description: ''
     };
   }
 
   function deleteTodo (step, index) {
-    step.todos.splice(index, 1);
+    step.to_do_items.splice(index, 1);
   }
 
   function toCreateTask () {

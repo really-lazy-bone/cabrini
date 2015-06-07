@@ -135,7 +135,8 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'ng-mfb', 'starter
     url: '/info',
     views: {
       'tab-info': {
-        templateUrl: 'templates/tab-info.html'
+        templateUrl: 'templates/tab-info.html',
+        controller: 'InfoCtrl as info'
       }
     }
   })

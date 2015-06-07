@@ -68,10 +68,12 @@ angular.module('starter.services', [])
   }
 })
 
-.service('TaskService', function($http, Setting) {
+.service('TaskService', function($http, $rootScope, Setting) {
   return {
     createTask: createTask,
-    list: list,
+    assignTask: assignTask,
+    getOrganizationTaskList: getOrganizationTaskList,
+    getImmigrantTaskList: getImmigrantTaskList,
     updateTodo: updateTodo
   };
 
@@ -79,8 +81,16 @@ angular.module('starter.services', [])
     return $http.post(Setting.serverUrl + '/tasks/create', task);
   }
 
-  function list () {
-    return $http.get(Setting.serverUrl + '/tasks/list');
+  function assignTask (taskId, userId) {
+    return $http.post(Setting.serverUrl + '/tasks/' + taskId + '/' + userId);
+  }
+
+  function getOrganizationTaskList () {
+    return $http.get(Setting.serverUrl + '/tasks/organization/list/' + $rootScope.user._id);
+  }
+
+  function getImmigrantTaskList () {
+    return $http.get(Setting.serverUrl + '/tasks/user/list/' + $rootScope.user._id);
   }
 
   function updateTodo (taskId, todoId, done) {
