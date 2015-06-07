@@ -20,10 +20,13 @@ router.post('/signin', function (req, res) {
   User.findOne({
     email: userToCheck
   }, function (err, existingUser) {
-      if (existingUser.password === userToCheck.password) {
-        user = existingUser;
-      }
+      if (existingUser) {
+        if (existingUser.password === userToCheck.password) {
+          user = existingUser;
+        }
 
+      }
+      
     });
   if (user) {
     res.send(JSON.stringify(user));
