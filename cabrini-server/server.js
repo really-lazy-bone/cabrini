@@ -11,14 +11,12 @@ app.use('/users', require('./controllers/users'));
 
 
 mongoose.connect('mongodb://localhost/test');
- 
+ /*
  User.remove({}, function(err) { 
    console.log('collection removed') ;
-   
-   
-   
+       
 });
-
+*/
 /*
 var toDoList = new ToDoList({ _id: 0, title: 'Test to-do List', age: 100 });
 toDoList.save(function (err) {

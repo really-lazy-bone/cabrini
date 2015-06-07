@@ -16,25 +16,29 @@ router.post('/signup', function (req, res) {
 router.post('/signin', function (req, res) {
   var userData = req.body;
   var userToCheck = User(userData);
-  var user;
   User.findOne({
-    email: userToCheck
+    email: userToCheck.email
   }, function (err, existingUser) {
       if (existingUser) {
-        if (existingUser.password === userToCheck.password) {
-          user = existingUser;
+        console.log(existingUser.password);
+        console.log(userToCheck.password);
+        if (existingUser.password == userToCheck.password) {
+
+          res.send(JSON.stringify(existingUser));
+        }
+        else {
+          res.sendStatus(403);
+
         }
 
       }
-      
+      else {
+
+        res.sendStatus(403);
+      }
+
     });
-  if (user) {
-    res.send(JSON.stringify(user));
 
-  }
-  else {
-    res.sendStatus(403);
 
-  }
 });
 module.exports = router;
