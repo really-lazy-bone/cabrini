@@ -14,6 +14,10 @@ router.post('/create', function (req, res) {
 });
 
 router.post('/assign', function (req, res) {
+  
+  var userID;
+  var taskID;
+  
   var TaskData = req.body;
   var newTask = Task(TaskData);
    newTask.save(function (err) {

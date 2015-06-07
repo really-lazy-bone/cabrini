@@ -2,10 +2,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var User = require('./models/User');
 var Task = require('./models/Task');
-var Step = require('./models/Step');
-var ToDoItem = require('./models/ToDoItem');
+
 
 app.use(bodyParser.json());
 app.use('/users', require('./controllers/users'));
