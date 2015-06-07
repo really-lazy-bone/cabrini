@@ -14,12 +14,9 @@ var matching = {
 						}, function (err, existingOrganization) {
 								if (existingOrganization) {
 									matchedOrgnization = existingOrganization;
+									return matchedOrgnization;
 								}
-
-
 							});
-
-
 					}
 					else {
 						//Found user, but no match yet. Loop through all orgs, and find best match,
@@ -35,9 +32,8 @@ var matching = {
 							existingUser.ord_id = matchedOrgnization._id;
 							existingUser.save(function (err) {
 								if (err) throw err;
+								return matchedOrgnization;
 							});
-
-
 
 						});
 
@@ -47,7 +43,7 @@ var matching = {
 				}
 
 			});
-		return matchedOrgnization;
+		
 	},
 	computeDistances: function (user, organization) {
 		
