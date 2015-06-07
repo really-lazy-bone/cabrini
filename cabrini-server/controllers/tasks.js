@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Task = require('../models/Task');
 
-router.get('/organizaiton/list/:id', function (req, res) {
+router.get('/organizaton/list/:id', function (req, res) {
 
   var orgID = Number(req.param("id"));
   Task.find({ org_id: orgID }, function (err, tasks) {
