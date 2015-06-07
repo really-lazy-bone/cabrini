@@ -1,72 +1,93 @@
 <ion-pane>
 	<ion-header-bar class="bar-positive">
-        <h1 class="title">Cabrini</h1>
 		<button class="button button-clear"
-			ng-click="landing.changeLanguage()">
-			{{ landing.languageCode }}
+			ng-click="signup.goback()">
+			<i class="icon ion-ios-arrow-back"></i>
+		</button>
+        <h1 class="title">
+        	Cabrini
+        </h1>
+		<button class="button button-clear"
+			ng-click="signup.changeLanguage()">
+			{{ signup.languageCode }}
 			<i class="icon ion-android-arrow-dropdown"></i>
 		</button>
 	</ion-header-bar>
-	<ion-content ng-show="landing.changingLanguage">
+	<ion-content ng-show="signup.changingLanguage">
 		<ul class="list">
 			<li class="item item-divider"
-				ng-click="landing.setLanguage('English')">
+				ng-click="signup.setLanguage('English')">
 				English
 			</li>
 			<li class="item item-divider"
-				ng-click="landing.setLanguage('Chinese')">
+				ng-click="signup.setLanguage('Chinese')">
 				中文 (Chinese)
 			</li>
 			<li class="item item-divider"
-				ng-click="landing.setLanguage('Spanish')">
+				ng-click="signup.setLanguage('Spanish')">
 				Spanish
 			</li>
 		</ul>
 	</ion-content>
-	<ion-content ng-show="!landing.changingLanguage">
+	<ion-content ng-show="!signup.changingLanguage">
 		<div class="list">
 			<div class="item item-divider">
-				Organization Sign Up
+				{{'organization-sign-up-label' | translate}}
 			</div>
-			<div class="item" ng-show="!landing.isLogin">
+			<div class="item" ng-show="!signup.isLogin">
 				<label class="item item-input item-stack-label">
 					<span class="input-label">
 						{{'country' | translate}}
 					</span>
 					<input type="text"
 						placeholder="{{'country' | translate}}"
-						ng-model="landing.user.country">
+						ng-model="signup.user.country">
 				</label>
-				<label class="item item-input item-select">
-					<div class="input-label">
-						{{'intent' | translate}}
-					</div>
-					<select
-						ng-model="landing.user.immigration_interests">
-						<option>{{'intent-student' | translate}}</option>
-						<option>{{'intent-work' | translate}}</option>
-						<option>{{'intent-greencard' | translate}}</option>
-						<option>{{'intent-citizenship' | translate}}</option>
-					</select>
-				</label>
+				<div class="item item-divider">
+					{{'organization-intent-label' | translate}}
+				</div>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox" ng-model="signup.student">
+					</label>
+					{{'intent-student' | translate}}
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox" ng-model="signup.work">
+					</label>
+					{{'intent-work' | translate}}
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox" ng-model="signup.greencard">
+					</label>
+					{{'intent-greencard' | translate}}
+				</li>
+				<li class="item item-checkbox">
+					<label class="checkbox">
+					<input type="checkbox" ng-model="signup.citizenship">
+					</label>
+					{{'intent-citizenship' | translate}}
+				</li>
 				<div class="item item-divider">
 					{{'language-label' | translate}}
 				</div>
 				<li class="item item-checkbox">
 					<label class="checkbox">
-					<input type="checkbox" ng-model="landing.english">
+					<input type="checkbox" ng-model="signup.english">
 					</label>
 					{{'english' | translate}}
 				</li>
 				<li class="item item-checkbox">
 					<label class="checkbox">
-					<input type="checkbox" ng-model="landing.chinese">
+					<input type="checkbox" ng-model="signup.chinese">
 					</label>
 					{{'chinese' | translate}}
 				</li>
 				<li class="item item-checkbox">
 					<label class="checkbox">
-					<input type="checkbox" ng-model="landing.spanish">
+					<input type="checkbox" ng-model="signup.spanish">
 					</label>
 					{{'spanish' | translate}}
 				</li>
@@ -76,7 +97,7 @@
 					</span>
 					<input type="text"
 						placeholder="{{'email' | translate}}"
-						ng-model="landing.user.email">
+						ng-model="signup.user.email">
 				</label>
 				<label class="item item-input item-stack-label">
 					<span class="input-label">
@@ -84,25 +105,25 @@
 					</span>
 					<input type="password"
 						placeholder="{{'password' | translate}}"
-						ng-model="landing.user.password">
+						ng-model="signup.user.password">
 				</label>
 				<button class="button button-positive button-block"
-				ng-click="landing.signup()">
+				ng-click="signup.signup()">
 					{{'signup' | translate}}
 				</button>
 				<button class="button button-block button-calm"
-					ng-click="landing.toLogin()">
+					ng-click="signup.toLogin()">
 					{{'login' | translate}}
 				</button>
 			</div>
-			<div class="item" ng-show="landing.isLogin">
+			<div class="item" ng-show="signup.isLogin">
 				<label class="item item-input item-stack-label">
 					<span class="input-label">
 						{{'email' | translate}}
 					</span>
 					<input type="text"
 						placeholder="{{'email' | translate}}"
-						ng-model="landing.email">
+						ng-model="signup.email">
 				</label>
 				<label class="item item-input item-stack-label">
 					<span class="input-label">
@@ -110,14 +131,14 @@
 					</span>
 					<input type="password"
 						placeholder="{{'password' | translate}}"
-						ng-model="landing.password">
+						ng-model="signup.password">
 				</label>
 				<button class="button button-block button-positive"
-					ng-click="landing.login()">
+					ng-click="signup.login()">
 					{{'login' | translate}}
 				</button>
 				<button class="button button-calm button-block"
-				ng-click="landing.toSignup()">
+				ng-click="signup.toSignup()">
 					{{'signup' | translate}}
 				</button>
 			</div>

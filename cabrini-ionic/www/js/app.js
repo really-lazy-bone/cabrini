@@ -54,7 +54,8 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     'english': 'English',
     'chinese': 'Chinese',
     'spanish': 'Spanish',
-    'organization-sign-up-label': 'Organization Sign Up Here'
+    'organization-sign-up-label': 'Organization Sign Up Here',
+    'organization-intent-label': 'What intent you can help with?'
   });
 
   $translateProvider.translations('ch', {
@@ -79,32 +80,8 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     'english': '英文',
     'chinese': '中文',
     'spanish': '西班牙語',
-    'organization-sign-up-label': 'Organization Sign Up Here'
-  });
-
-  $translateProvider.translations('es', {
-    'landing-title': 'Hallo de Cabrini',
-    'landing-help': 'Los agentes locales que te rodean',
-    'country': 'País de origen',
-    'intent': 'Intención',
-    'intent-student': 'Estudiante',
-    'intent-work': 'Trabajo',
-    'intent-greencard': 'Tarjeta Verde',
-    'intent-citizenship': 'Ciudadanía',
-    'signup': 'Sign Up',
-    'email': 'Email',
-    'password': 'Password',
-    'login': 'Log In',
-    'logout': 'Log Out',
-    'update-user-profile': 'Perfil de usuario de actualización',
-    'profile-label': 'Profile',
-    'chat-label': 'Chat',
-    'info-label': 'Info',
-    'language-label': 'I also speak',
-    'english': 'English',
-    'chinese': 'Chinese',
-    'spanish': 'Spanish',
-    'organization-sign-up-label': 'Organization Sign Up Here'
+    'organization-sign-up-label': '協會從此加入',
+    'organization-intent-label': '領域專精'
   });
 
   $translateProvider.preferredLanguage('en');

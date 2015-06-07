@@ -79,6 +79,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('OrganizationSignupCtrl', function($state, Language) {
+  var self = this;
+
   self.changingLanguage = false;
   self.isLogin = false;
   self.language = Language.get();
@@ -91,6 +93,7 @@ angular.module('starter.controllers', [])
   self.toLogin = toLogin;
   self.toSignup = toSignup;
   self.toOrganizationSignup = toOrganizationSignup;
+  self.goback = goback;
 
   function signup () {
     var languages = [];
@@ -141,5 +144,9 @@ angular.module('starter.controllers', [])
 
   function toOrganizationSignup () {
     $state.go('organization-signup');
+  }
+
+  function goback () {
+    $state.go('landing');
   }
 });
