@@ -3,17 +3,11 @@ var Schema = mongoose.Schema;
 
 
 var userSchema = new Schema({
-  name: String,
-  username: { type: String, required: true},
   password: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   languages: [String],
-  countries: [String],
+  country: String,
   immigration_interests : [{ type: Schema.Types.ObjectId, ref: 'ImmigrationInterest' }],
-  meta: {
-    age: Number,
-    website: String
-  },
   created_at: Date,
   updated_at: Date
 });
