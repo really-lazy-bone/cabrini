@@ -215,6 +215,8 @@ angular.module('starter.controllers', [])
   self.addTodo = addTodo;
   self.deleteTodo = deleteTodo;
 
+  self.assignTaskToUser = assignTaskToUser;
+
   self.toCreateTask = toCreateTask;
   self.toCreateGeneralInfo = toCreateGeneralInfo;
   self.toAssignTask = toAssignTask;
@@ -245,6 +247,13 @@ angular.module('starter.controllers', [])
 
   function deleteTodo (step, index) {
     step.to_do_items.splice(index, 1);
+  }
+
+  function assignTaskToUser () {
+    TaskService.assignTask(self.taskId, self.assignedUserId)
+      .then(function() {
+        $state.go('organizationTab.info');
+      });
   }
 
   function toCreateTask () {

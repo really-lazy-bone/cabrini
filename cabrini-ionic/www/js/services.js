@@ -92,7 +92,7 @@ angular.module('starter.services', [])
   }
 
   function assignTask (taskId, userId) {
-    return $http.post(Setting.serverUrl + '/tasks/' + taskId + '/' + userId);
+    return $http.post(Setting.serverUrl + '/tasks/assign/' + taskId + '/' + userId);
   }
 
   function getOrganizationTaskList () {
