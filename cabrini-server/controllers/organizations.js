@@ -43,7 +43,7 @@ router.post('/signin', function (req, res) {
 
 });
 //Only get unassigned todo List of Org
-router.get('/organization/users/:id', function (req, res) {
+router.get('/users/:id', function (req, res) {
   var orgID = req.param("id");
   Organization.findOne({
    _id: orgID}).populate("users").exec(function (err, org) {
