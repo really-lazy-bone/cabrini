@@ -95,8 +95,69 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ChatCtrl', function(UserService) {
-  UserService.matchToOrganization();
+.controller('ChatCtrl', function($rootScope, $scope, $firebaseArray, UserService, Setting) {
+  var self = this;
+
+  UserService.matchToOrganization()
+    .then(function(response) {
+      self.organization = response.data;
+
+      var ref = new Firebase(Setting.firebaseUrl + '/' +
+        self.organization._id + '-' + $rootScope.user._id);
+
+      $scope.messages = $firebaseArray(ref);
+    });
+
+  self.addMessage = addMessage;
+
+  function addMessage () {
+    $scope.messages.$add({
+      user: $rootScope.user._id,
+      message: self.newMessage,
+      action: 'chat'
+    });
+
+    self.newMessage = '';
+  }
+})
+
+.controller('OrganizationChatCtrl', function($rootScope, $scope, $firebaseArray, OrganizationService, Setting) {
+  var self = this;
+
+  OrganizationService.getMatchUsers()
+    .then(function(response) {
+      self.users = response.data;
+
+      self.activeUser = self.users[0];
+
+      var ref = new Firebase(Setting.firebaseUrl + '/' +
+        $rootScope.user._id + '-' + self.activeUser._id);
+
+      $scope.messages = $firebaseArray(ref);
+    });
+
+  self.addMessage = addMessage;
+  self.updateUser = updateUser;
+
+  function addMessage () {
+    $scope.messages.$add({
+      user: $rootScope.user._id,
+      message: self.newMessage,
+      action: 'chat'
+    });
+
+    self.newMessage = '';
+  }
+
+  function updateUser () {
+    OrganizationService.getMatchUsers()
+      .then(function(response) {
+        var ref = new Firebase(Setting.firebaseUrl + '/' +
+          $rootScope.user._id + '-' + self.activeUser._id);
+
+        $scope.messages = $firebaseArray(ref);
+      });
+  }
 })
 
 .controller('OrganizationSignupCtrl', function($state, Language, OrganizationService, $rootScope) {
@@ -233,6 +294,10 @@ angular.module('starter.controllers', [])
     TaskService.createTask(self.task)
       .then(function(response) {
         $state.go('organizationTab.info');
+        TaskService.getOrganizationTaskList()
+          .then(function(response) {
+            self.tasks = response.data;
+          });
       });
   }
 

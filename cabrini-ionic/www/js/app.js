@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'pascalprecht.translate', 'ng-mfb', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'firebase', 'pascalprecht.translate', 'ng-mfb', 'starter.controllers', 'starter.services'])
 
 .run(function($rootScope, $http) {
   $rootScope.user = (sessionStorage.getItem('user') || null);
@@ -216,7 +216,8 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'ng-mfb', 'starter
     url: '/chats',
     views: {
       'tab-chats': {
-        templateUrl: 'templates/organization-tab-chats.html'
+        templateUrl: 'templates/organization-tab-chats.html',
+        controller: 'OrganizationChatCtrl as chat'
       }
     }
   })
