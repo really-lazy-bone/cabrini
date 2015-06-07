@@ -3,7 +3,7 @@ var router = express.Router();
 var Task = require('../models/Task');
 
 //Only get unassigned todo List of Org
-router.get('/organizaton/list/:id', function (req, res) {
+router.get('/organization/list/:id', function (req, res) {
   var orgID = req.param("id");
   Task.find({
     $and: [
